@@ -45,6 +45,11 @@ import { useEffect } from "react";
 import Alert from "@mui/material/Alert";
 import AlertTitle from "@mui/material/AlertTitle";
 import Message from "../../Message";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -64,7 +69,7 @@ export default function UserMoreMenu(props) {
   const [openEditUser, setOpenEditUser] = React.useState(false);
   const handleOpenEditUser = () => setOpenEditUser(true);
   const handleCloseEditUser = () => setOpenEditUser(false);
-
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState(props.name);
@@ -73,7 +78,12 @@ export default function UserMoreMenu(props) {
   const [verify, setVerify] = useState(true);
   const [id, setID] = useState(props.id);
   const [deleted, setDeleted] = useState(props.deleted);
-
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
+  };
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -215,7 +225,7 @@ export default function UserMoreMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteUser}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
         {(deleted == true && (
@@ -257,6 +267,37 @@ export default function UserMoreMenu(props) {
           />
         </MenuItem>
       </Menu>
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" style={{ width: 500 }}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ textAlign: "center" }}
+          >
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteUser();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
 
      
 

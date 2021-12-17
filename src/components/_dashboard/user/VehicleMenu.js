@@ -44,6 +44,11 @@ import plusFill from "@iconify/icons-eva/plus-fill";
 import { useEffect } from "react";
 import Message from "../../Message";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -64,7 +69,7 @@ export default function VehicleMenu(props) {
   const handleOpenEditVehicle = () => setOpenEditVehicle(true);
   const handleCloseEditVehicle = () => setOpenEditVehicle(false);
   const [idEnterprise, setIDEnterprise] = React.useState(props.idEnterprise);
-
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [idVehicles, setidVehicles] = React.useState(props.idVehicles);
 
   const [name, setName] = React.useState(props.name);
@@ -83,6 +88,12 @@ export default function VehicleMenu(props) {
     type: "",
   });
 
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
+  };
   const handleChangeCategory = (event) => {
     setType(event.target.value);
   };
@@ -186,7 +197,7 @@ export default function VehicleMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteVehicle}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
 
@@ -207,6 +218,38 @@ export default function VehicleMenu(props) {
           />
         </MenuItem>
       </Menu>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" style={{ width: 500 }}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ textAlign: "center" }}
+          >
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteVehicle();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Modal
         aria-labelledby="transition-modal-title"

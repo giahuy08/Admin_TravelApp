@@ -148,7 +148,7 @@ export default function Discount() {
     const content = await response.json();
     console.log(content.data)
     if(content.data){
-      window.confirm('Add thành công !')
+      setNotify({ isOpen: true, message: "Thêm thành công", type: "success" });
       window.location.reload()
     }else {
       window.alert('Thất bại !')

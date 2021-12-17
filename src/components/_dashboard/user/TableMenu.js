@@ -44,6 +44,12 @@ import plusFill from "@iconify/icons-eva/plus-fill";
 import { useEffect } from "react";
 import Message from "../../Message";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -76,6 +82,7 @@ export default function RoomMenu(props) {
   const [checkOut, setCheckOut] = React.useState(props.checkOut);
   const [deleted, setDeleted] = React.useState(props.deleted);
   const [id, setId] = React.useState(props.id);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -102,7 +109,12 @@ export default function RoomMenu(props) {
   const handleChangeCategory = (event) => {
     setType(event.target.value);
   };
-
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
+  };
   const clickEditTour = async () => {
     console.log({
       idEnterprise,
@@ -145,9 +157,6 @@ export default function RoomMenu(props) {
         message: "Sửa thành công",
         type: "success",
       });
-      
-       
-
     } else {
       setNotify({
         isOpen: true,
@@ -157,7 +166,7 @@ export default function RoomMenu(props) {
     }
   };
 
-  const handleDeleteVehicle = () => {
+  const handleDeleteTable = () => {
     console.log(localStorage.getItem("accessToken"));
 
     callApi(
@@ -179,7 +188,6 @@ export default function RoomMenu(props) {
       });
   };
 
- 
   return (
     <>
       <IconButton ref={ref} onClick={() => setIsOpen(true)}>
@@ -203,11 +211,9 @@ export default function RoomMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteVehicle}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
-
-        
 
         <MenuItem
           component={RouterLink}
@@ -224,6 +230,38 @@ export default function RoomMenu(props) {
           />
         </MenuItem>
       </Menu>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" style={{ width: 500 }}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ textAlign: "center" }}
+          >
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteTable();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -251,7 +289,7 @@ export default function RoomMenu(props) {
               disableClearable
               options={enterprise.map((e) => e.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Eterprise" />
+                <TextField {...params} label="Enterprise" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
@@ -307,7 +345,6 @@ export default function RoomMenu(props) {
               value={price}
               onChange={(event) => setPrice(event.target.value)}
             />
-           
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Kiểm tra trước khi lưu!

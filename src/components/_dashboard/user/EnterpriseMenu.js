@@ -44,6 +44,11 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { useEffect } from "react";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -63,7 +68,7 @@ export default function EnterpriseMenu(props) {
   const [openEditEnterprise, setOpenEditEnterprise] = React.useState(false);
   const handleOpenEditEnterprise = () => setOpenEditEnterprise(true);
   const handleCloseEditEnterprise = () => setOpenEditEnterprise(false);
-
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [name, setName] = React.useState(props.name);
   const [detail, setDetail] = React.useState(props.detail);
   const [ImagesEnterprise, setImagesEnterprise] = React.useState();
@@ -77,6 +82,13 @@ export default function EnterpriseMenu(props) {
 
   const handleChangeCategory = (event) => {
     setType(event.target.value);
+  };
+
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
   };
 
   const clickEditEnterprise = async () => {
@@ -162,7 +174,7 @@ export default function EnterpriseMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteEnterprise}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
 
@@ -184,6 +196,37 @@ export default function EnterpriseMenu(props) {
         </MenuItem>
       </Menu>
       <Message notify={notify} setNotify={setNotify} />
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" style={{ width: 500 }}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ textAlign: "center" }}
+          >
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteEnterprise();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"

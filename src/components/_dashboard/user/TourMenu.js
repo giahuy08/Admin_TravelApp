@@ -44,6 +44,11 @@ import plusFill from "@iconify/icons-eva/plus-fill";
 import { useEffect } from "react";
 import Message from "../../Message";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -59,7 +64,7 @@ const style = {
 export default function TourMenu(props) {
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [openEditTour, setOpenEditTour] = React.useState(false);
   const handleOpenEditTour = () => setOpenEditTour(true);
   const handleCloseEditTour = () => setOpenEditTour(false);
@@ -80,7 +85,12 @@ export default function TourMenu(props) {
 
   const [category, setCategory] = React.useState(props.category);
   const [openCategory, setOpenCategory] = React.useState(false);
-
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
+  };
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -192,6 +202,7 @@ export default function TourMenu(props) {
           message: "Xóa thành công",
           type: "success",
         });
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
@@ -253,7 +264,7 @@ export default function TourMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteTour}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
 
@@ -297,6 +308,38 @@ export default function TourMenu(props) {
         </MenuItem>
       </Menu>
 
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title" style={{ width: 500 }}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText
+            id="alert-dialog-description"
+            style={{ textAlign: "center" }}
+          >
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteTour();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -323,7 +366,7 @@ export default function TourMenu(props) {
               disableClearable
               options={enterprise.map((e) => e.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Eterprise" />
+                <TextField {...params} label="Enterprise" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {

@@ -491,7 +491,7 @@ export default function Tour() {
               disableClearable
               options={enterprise.map((enterprise) => enterprise.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Eterprise" />
+                <TextField {...params} label="Enterprise" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {

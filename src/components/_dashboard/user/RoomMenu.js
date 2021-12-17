@@ -44,6 +44,12 @@ import plusFill from "@iconify/icons-eva/plus-fill";
 import { useEffect } from "react";
 import Message from "../../Message";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -63,7 +69,7 @@ export default function RoomMenu(props) {
   const [openEditRoom, setOpenEditRoom] = React.useState(false);
   const handleOpenEditRoom = () => setOpenEditRoom(true);
   const handleCloseEditRoom = () => setOpenEditRoom(false);
-
+  const [openDialog, setOpenDialog] = React.useState(false);
   const [enterprise, setEnterprise] = React.useState([]);
   const [idEnterprise, setIDEnterprise] = React.useState(props.idEnterprise);
 
@@ -77,6 +83,9 @@ export default function RoomMenu(props) {
   const [checkOut, setCheckOut] = React.useState(props.checkOut);
   const [deleted, setDeleted] = React.useState(props.deleted);
   const [id, setId] = React.useState(props.id);
+  const handleClickDialogClose = () => {
+    setOpenDialog(false);
+  };
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -102,6 +111,9 @@ export default function RoomMenu(props) {
 
   const handleChangeCategory = (event) => {
     setType(event.target.value);
+  };
+  const handleClickDialogOpen = () => {
+    setOpenDialog(true);
   };
 
   const clickEditRoom = async () => {
@@ -157,8 +169,6 @@ export default function RoomMenu(props) {
   };
 
   const handleDeleteRoom = () => {
- 
-
     callApi(`hotelroom/deleteForceHotelRoom?id=${props.id}`, "DELETE")
       .then((res) => {
         setNotify({
@@ -198,7 +208,7 @@ export default function RoomMenu(props) {
           <ListItemText
             primary="Delete"
             primaryTypographyProps={{ variant: "body2" }}
-            onClick={handleDeleteRoom}
+            onClick={handleClickDialogOpen}
           />
         </MenuItem>
 
@@ -217,6 +227,36 @@ export default function RoomMenu(props) {
           />
         </MenuItem>
       </Menu>
+
+      <Dialog
+        open={openDialog}
+        onClose={handleClickDialogClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        
+      >
+        <DialogTitle id="alert-dialog-title" style={{width:500}}>
+          {"Xác nhận xóa?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description" style={{textAlign: "center"}}>
+            Bạn có muốn xóa
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              handleDeleteRoom();
+            }}
+          >
+            Xóa
+          </Button>
+          <Button onClick={handleClickDialogClose} autoFocus>
+            Thoát
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -244,7 +284,7 @@ export default function RoomMenu(props) {
               disableClearable
               options={enterprise.map((e) => e.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Eterprise" />
+                <TextField {...params} label="Enterprise" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
