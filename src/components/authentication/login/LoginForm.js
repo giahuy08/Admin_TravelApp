@@ -16,7 +16,7 @@ import {
   InputAdornment,
   FormControlLabel
 } from '@mui/material';
-import Message from '../components/Message'
+import Message from '../../Message'
 import { LoadingButton } from '@mui/lab';
 
 // ----------------------------------------------------------------------
@@ -65,7 +65,7 @@ export default function LoginForm() {
         .catch((err) => {
           setNotify({
             isOpen: true,
-            message: "Đăng nhập thất bại",
+            message: "Sai tài khoản hoặc mật khẩu",
             type: "error",
           });
           console.log(err);
