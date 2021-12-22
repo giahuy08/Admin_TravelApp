@@ -16,6 +16,7 @@ import {
   InputAdornment,
   FormControlLabel
 } from '@mui/material';
+import Message from '../components/Message'
 import { LoadingButton } from '@mui/lab';
 
 // ----------------------------------------------------------------------
@@ -23,7 +24,11 @@ import { LoadingButton } from '@mui/lab';
 export default function LoginForm() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
-
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const LoginSchema = Yup.object().shape({
     email: Yup.string().email('Email must be a valid email address').required('Email is required'),
     password: Yup.string().required('Password is required')
@@ -44,12 +49,25 @@ export default function LoginForm() {
           localStorage.setItem("accessToken",res.data.data.token)
           localStorage.setItem("name",res.data.data.user.name)
           localStorage.setItem("email",res.data.data.user.email)
-          navigate('/dashboard', { replace: true });
+
+          setNotify({
+            isOpen: true,
+            message: "Đăng nhập thành công",
+            type: "success",
+          });
+          setTimeout(function () {
+            navigate('/dashboard', { replace: true });
+          }, 1500);
+      
           
          
         })
         .catch((err) => {
-          window.alert('Sai mật khẩu hoặc email !')
+          setNotify({
+            isOpen: true,
+            message: "Đăng nhập thất bại",
+            type: "error",
+          });
           console.log(err);
         });
     }
@@ -122,6 +140,7 @@ export default function LoginForm() {
           Login
         </LoadingButton>
       </Form>
+      <Message notify={notify} setNotify={setNotify} />
     </FormikProvider>
   );
 }
