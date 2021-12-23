@@ -170,7 +170,7 @@ export default function RestaurantTable() {
     })();
   }, []);
 
-  const clickAddTour = async () => {
+  const clickAddTable = async () => {
     console.log({
       idEnterprise,
       name,
@@ -178,8 +178,7 @@ export default function RestaurantTable() {
       floor,
       detail,
       price,
-      checkIn,
-      checkOut,
+    
     });
 
     let link =
@@ -198,8 +197,7 @@ export default function RestaurantTable() {
         floor,
         detail,
         price,
-        checkIn,
-        checkOut,
+       
       }),
     });
     const content = await response.json();
@@ -335,8 +333,7 @@ export default function RestaurantTable() {
                         floor,
                         price,
                         status,
-                        checkIn,
-                        checkOut,
+                     
                         deleted,
                       } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
@@ -529,7 +526,7 @@ export default function RestaurantTable() {
               component={RouterLink}
               to="#"
               startIcon={<Icon icon={plusFill} />}
-              onClick={clickAddTour}
+              onClick={clickAddTable}
             >
               Lưu
             </Button>
