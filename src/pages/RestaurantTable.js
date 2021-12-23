@@ -52,13 +52,13 @@ import TableMenu from "src/components/_dashboard/user/TableMenu";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "size", label: "Size", alignRight: false },
-  { id: "floor", label: "Floor", alignRight: false },
-  { id: "detail", label: "Detail", alignRight: false },
-  { id: "price", label: "Price", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
-  { id: "delete", label: "Delete", alignRight: false },
+  { id: "name", label: "Tên", alignRight: false },
+  { id: "size", label: "Loại", alignRight: false },
+  { id: "floor", label: "Tầng", alignRight: false },
+  { id: "detail", label: "Chi tiết", alignRight: false },
+  { id: "price", label: "Giá(VNĐ)", alignRight: false },
+  { id: "status", label: "Trạng thái", alignRight: false },
+  { id: "delete", label: "Tình trạng", alignRight: false },
   { id: "" },
 ];
 
@@ -280,7 +280,7 @@ export default function RestaurantTable() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Bàn Ăn | TRAVEL">
       <Container>
         <Stack
           direction="row"
@@ -289,7 +289,7 @@ export default function RestaurantTable() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Table (Số lượng {tables.length})
+            Bàn ăn (Số lượng {tables.length})
           </Typography>
           <Button
             variant="contained"
@@ -298,7 +298,7 @@ export default function RestaurantTable() {
             startIcon={<Icon icon={plusFill} />}
             onClick={handleOpenAddTour}
           >
-            Thêm Table
+            Thêm Bàn
           </Button>
         </Stack>
 
@@ -450,7 +450,7 @@ export default function RestaurantTable() {
         <Fade in={openAddTour}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Thêm Table
+              Thêm bàn
             </Typography>
 
             <Autocomplete
@@ -473,7 +473,7 @@ export default function RestaurantTable() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -482,7 +482,7 @@ export default function RestaurantTable() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Size"
+              label="Loại"
               variant="outlined"
               value={size}
               onChange={(event) => setSize(event.target.value)}
@@ -491,7 +491,7 @@ export default function RestaurantTable() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Floor"
+              label="Tầng"
               variant="outlined"
               value={floor}
               onChange={(event) => setFloor(event.target.value)}
@@ -501,7 +501,7 @@ export default function RestaurantTable() {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}
@@ -510,7 +510,7 @@ export default function RestaurantTable() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Price(VNĐ)"
+              label="Giá(VNĐ)"
               variant="outlined"
               value={price}
               onChange={(event) => setPrice(event.target.value)}

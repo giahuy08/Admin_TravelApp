@@ -113,7 +113,7 @@ export default function BookTourMenu(props) {
           <ListItemIcon>
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Cancel" primaryTypographyProps={{ variant: 'body2' }} onClick={handleCancelBookTour}/>
+          <ListItemText primary="Hủy tour" primaryTypographyProps={{ variant: 'body2' }} onClick={handleCancelBookTour}/>
         </MenuItem>
         {status == 0 && <MenuItem sx={{ color: 'text.secondary' }}>
           <ListItemIcon>

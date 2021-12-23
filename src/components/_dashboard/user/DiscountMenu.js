@@ -154,7 +154,7 @@ export default function DiscountMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditDiscount}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -164,7 +164,7 @@ export default function DiscountMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
-              primary="Delete"
+              primary="Xóa"
               primaryTypographyProps={{ variant: "body2" }}
               onClick={handleClickDialogOpen}
             />
@@ -225,7 +225,7 @@ export default function DiscountMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Code"
+              label="Mã"
               variant="outlined"
               value={code}
               onChange={(event) => setCode(event.target.value)}
@@ -234,7 +234,7 @@ export default function DiscountMenu(props) {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Discount"
+              label="Giảm giá"
               variant="outlined"
               value={discount}
               onChange={(event) => setDiscount(event.target.value)}

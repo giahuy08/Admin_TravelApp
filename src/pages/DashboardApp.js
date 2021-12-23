@@ -89,10 +89,10 @@ export default function DashboardApp() {
   }
 
   return (
-    <Page title="Dashboard | Travel App">
+    <Page title="Thống Kê | TRAVEL">
       <Container maxWidth="xl">
         <Box sx={{ pb: 5 }}>
-          <Typography variant="h4">Hi, Welcome back</Typography>
+          <Typography variant="h4">Xin chào, quản lý ứng dụng TRAVEL</Typography>
         </Box>
         {totalUser == '' && <div>
           <Box sx={{ display: 'flex' }}>
@@ -120,7 +120,7 @@ export default function DashboardApp() {
                   <Stack spacing={3}>
 
                     <DesktopDateRangePicker
-                      startText="Statistic start"
+                      startText="Ngày bắt đầu"
                       value={value}
                       onChange={(newValue) => {
                         setValue(newValue);
@@ -128,7 +128,7 @@ export default function DashboardApp() {
                       renderInput={(startProps, endProps) => (
                         <React.Fragment>
                           <TextField {...startProps} />
-                          <Box sx={{ mx: 2 }}> to </Box>
+                          <Box sx={{ mx: 2 }}> đến </Box>
                           <TextField {...endProps} />
                         </React.Fragment>
                       )}
@@ -140,7 +140,7 @@ export default function DashboardApp() {
                     style={{marginTop:20,marginBottom:20,width:200,height:60}}
                     onClick={clickOK}
                   >
-                    Lọc
+                    Thống kê
                   </Button>
 
                 </LocalizationProvider>

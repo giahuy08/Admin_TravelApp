@@ -1,5 +1,6 @@
 import { Icon } from '@iconify/react';
 import androidFilled from '@iconify/icons-ant-design/android-filled';
+import globe2Fill from '@iconify/icons-eva/globe-2-fill';
 // material
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
@@ -40,11 +41,11 @@ export default function AppWeeklySales(props) {
   return (
     <RootStyle>
       <IconWrapperStyle>
-        <Icon icon={androidFilled} width={24} height={24} />
+        <Icon icon={globe2Fill} width={24} height={24} />
       </IconWrapperStyle>
       <Typography variant="h3">{fShortenNumber(props.totalTour)}</Typography>
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
-        Total Tours
+        Tour
       </Typography>
     </RootStyle>
   );

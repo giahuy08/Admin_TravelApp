@@ -56,7 +56,7 @@ export default function AppWebsiteVisits(props) {
 
   return (
     <Card >
-      <CardHeader title="Revenue Statistic" subheader="" />
+      <CardHeader title="Thống kê doanh thu" subheader="" />
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
         <ReactApexChart type="line" series={CHART_DATA} options={chartOptions} height={364} disable/>
       </Box>

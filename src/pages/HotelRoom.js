@@ -53,14 +53,14 @@ import RoomMenu from "src/components/_dashboard/user/RoomMenu";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "size", label: "Size", alignRight: false },
-  { id: "floor", label: "Floor", alignRight: false },
-  { id: "bed", label: "Bed", alignRight: false },
-  { id: "detail", label: "Detail", alignRight: false },
-  { id: "price", label: "Price", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
-  { id: "delete", label: "Delete", alignRight: false },
+  { id: "name", label: "Tên", alignRight: false },
+  { id: "size", label: "Loại", alignRight: false },
+  { id: "floor", label: "Tầng", alignRight: false },
+  { id: "bed", label: "Số giường", alignRight: false },
+  { id: "detail", label: "Chi tiết", alignRight: false },
+  { id: "price", label: "Giá(VNĐ)", alignRight: false },
+  { id: "status", label: "Trạng thái", alignRight: false },
+  { id: "delete", label: "Tình trạng", alignRight: false },
   { id: "" },
 ];
 
@@ -271,7 +271,7 @@ export default function HotelRoom() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Phòng Ở | TRAVEL">
       <Container>
         <Stack
           direction="row"
@@ -280,7 +280,7 @@ export default function HotelRoom() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Room (Số lượng {Rooms.length})
+            Phòng ở (Số lượng {Rooms.length})
           </Typography>
           <Button
             variant="contained"
@@ -447,7 +447,7 @@ export default function HotelRoom() {
         <Fade in={openAddRoom}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Thêm Room
+              Thêm phòng ở
             </Typography>
 
             <Autocomplete
@@ -456,7 +456,7 @@ export default function HotelRoom() {
               disableClearable
               options={enterprise.map((enterprise) => enterprise.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Enterprise" />
+                <TextField {...params} label="Doanh nghiệp" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
@@ -470,7 +470,7 @@ export default function HotelRoom() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -479,7 +479,7 @@ export default function HotelRoom() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Size"
+              label="Loại"
               variant="outlined"
               value={size}
               onChange={(event) => setSize(event.target.value)}
@@ -488,7 +488,7 @@ export default function HotelRoom() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Floor"
+              label="Tầng"
               variant="outlined"
               value={floor}
               onChange={(event) => setFloor(event.target.value)}
@@ -497,7 +497,7 @@ export default function HotelRoom() {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Bed"
+              label="Số giường"
               variant="outlined"
               value={bed}
               onChange={(event) => setBed(event.target.value)}
@@ -507,7 +507,7 @@ export default function HotelRoom() {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}

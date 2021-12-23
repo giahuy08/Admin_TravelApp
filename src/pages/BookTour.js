@@ -45,13 +45,13 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'nameTour', label: 'Name Tour', alignRight: false },
+  { id: 'nameTour', label: 'Tên Tour', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
-  { id: 'nameUser', label: 'Name User', alignRight: false },
-  { id: 'payment', label: 'Payment(VNĐ)', alignRight: false , align: 'right', format: (value) => value.toLocaleString('en-US')},
-  { id: 'startDate', label: 'Start Date', alignRight: false },
-  { id: 'endDate', label: 'End Date', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'nameUser', label: 'Khách hàng', alignRight: false },
+  { id: 'payment', label: 'Giá(VNĐ)', alignRight: false , align: 'right', format: (value) => value.toLocaleString('en-US')},
+  { id: 'startDate', label: 'Ngày đi', alignRight: false },
+  { id: 'endDate', label: 'Ngày về', alignRight: false },
+  { id: 'status', label: 'Trạng thái', alignRight: false },
   { id: '' }
 ];
 
@@ -170,7 +170,7 @@ export default function BookTour() {
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Book Tour (Số lượng {allBookTour.length})
+            Tour đã đặt (Số lượng {allBookTour.length})
           </Typography>
           
         </Stack>

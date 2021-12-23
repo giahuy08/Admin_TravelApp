@@ -46,12 +46,12 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'nameTour', label: 'Name Tour', alignRight: false },
-  { id: 'code', label: 'Code', alignRight: false },
-  { id: 'discount', label: 'Discount', alignRight: false },
-  { id: 'startDiscount', label: 'Start Discount', alignRight: false },
-  { id: 'endDiscount', label: 'End Discount', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'nameTour', label: 'Tên Tour', alignRight: false },
+  { id: 'code', label: 'Mã', alignRight: false },
+  { id: 'discount', label: 'Giảm giá(%)', alignRight: false },
+  { id: 'startDiscount', label: 'Bắt đầu', alignRight: false },
+  { id: 'endDiscount', label: 'Kết thúc', alignRight: false },
+  { id: 'status', label: 'Trạng thái', alignRight: false },
   { id: '' }
 ];
 
@@ -235,11 +235,11 @@ export default function Discount() {
 
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Mã Giảm Giá | TRAVEL">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            Discount (Số lượng {allDiscount.length})
+            Mã giảm giá (Số lượng {allDiscount.length})
           </Typography>
           <Button
             variant="contained"
@@ -248,7 +248,7 @@ export default function Discount() {
             startIcon={<Icon icon={plusFill} />}
             onClick={handleOpenAddDiscount}
           >
-            Thêm Discount 
+            Thêm mã giảm giá 
           </Button>
         </Stack>
 
@@ -367,7 +367,7 @@ export default function Discount() {
         <Fade in={openAddDiscount}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Sửa discount
+              Thêm mã giảm giá
             </Typography>
 
             <Autocomplete
@@ -386,15 +386,15 @@ export default function Discount() {
           <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" label="Code" variant="outlined" value={code} onChange={(event)=>setCode(event.target.value)}/>               
           <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="number" label="Discount" variant="outlined" value={discount} onChange={(event)=>setDiscount(event.target.value)}/>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-          Start Discount:
+          Ngày bắt đầu:
             </Typography>     
           <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="date"  variant="outlined" value={startDiscount} onChange={(event)=>setStartDiscount(event.target.value)}/>
           <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-          End Discount:
+          Ngày kết thúc:
             </Typography> 
           <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="date"  variant="outlined" value={endDiscount} onChange={(event)=>setEndDiscount(event.target.value)}/>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Kiểm tra trước khi nhấn save!
+              Kiểm tra trước khi nhấn "Thêm"!
             </Typography>
 
 
@@ -405,7 +405,7 @@ export default function Discount() {
             startIcon={<Icon icon={plusFill} />}
             onClick={clickAddDiscount}
           >
-            Add
+            Thêm
           </Button>
 
           </Box>

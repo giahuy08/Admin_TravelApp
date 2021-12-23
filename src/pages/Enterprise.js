@@ -49,11 +49,11 @@ import AddTour from "./AddTour.css";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "detail", label: "Detail", alignRight: false },
-  { id: "type", label: "Type", alignRight: false },
+  { id: "name", label: "Tên", alignRight: false },
+  { id: "detail", label: "Chi tiết", alignRight: false },
+  { id: "type", label: "Loại", alignRight: false },
   { id: "status", label: "Status", alignRight: false },
-  { id: "delete", label: "Delete", alignRight: false },
+  { id: "delete", label: "Trạng thái", alignRight: false },
   { id: "" },
 ];
 
@@ -244,7 +244,7 @@ export default function Enterprise() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Doanh Nghiệp | TRAVEL">
       <Container>
         <Stack
           direction="row"
@@ -253,7 +253,7 @@ export default function Enterprise() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Enterprise (Số lượng {enterprises.length})
+            Doanh nghiệp (Số lượng {enterprises.length})
           </Typography>
           <Button
             variant="contained"
@@ -262,7 +262,7 @@ export default function Enterprise() {
             startIcon={<Icon icon={plusFill} />}
             onClick={handleOpenAddTour}
           >
-            Thêm Enterprise
+            Thêm doanh nghiệp
           </Button>
         </Stack>
 
@@ -328,9 +328,9 @@ export default function Enterprise() {
 
                           <TableCell align="left">{detail}</TableCell>
                           <TableCell align="left">
-                            {type === 0 && "Enterprise"}
-                            {type === 1 && "Hotel"}
-                            {type === 2 && "Restaurant"}
+                            {type === 0 && "Doanh nghiệp"}
+                            {type === 1 && "Khách sạn"}
+                            {type === 2 && "Nhà hàng"}
                           </TableCell>
 
                           <TableCell align="left">
@@ -402,13 +402,13 @@ export default function Enterprise() {
         <Fade in={openAddTour}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-             Thêm Enterprise
+             Thêm doanh nghiệp
             </Typography>
 
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -418,7 +418,7 @@ export default function Enterprise() {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}
@@ -426,7 +426,7 @@ export default function Enterprise() {
 
             <FormControl sx={{ marginTop: "10px", width: "100%" }}>
               <InputLabel id="demo-controlled-open-select-label">
-                Type
+                Loại
               </InputLabel>
               <Select
                 labelId="demo-controlled-open-select-label"
@@ -438,9 +438,9 @@ export default function Enterprise() {
                 label="Age"
                 onChange={handleChangeCategory}
               >
-                <MenuItem value={0}>Enterprise</MenuItem>
-                <MenuItem value={1}>Hotel</MenuItem>
-                <MenuItem value={2}>Restaurant</MenuItem>
+                <MenuItem value={0}>Doanh nghiệp</MenuItem>
+                <MenuItem value={1}>Khách sạn</MenuItem>
+                <MenuItem value={2}>Nhà hàng</MenuItem>
               </Select>
             </FormControl>
 

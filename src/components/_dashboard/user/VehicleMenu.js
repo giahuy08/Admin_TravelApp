@@ -195,7 +195,7 @@ export default function VehicleMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
           <ListItemText
-            primary="Delete"
+            primary="Xóa"
             primaryTypographyProps={{ variant: "body2" }}
             onClick={handleClickDialogOpen}
           />
@@ -213,7 +213,7 @@ export default function VehicleMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditVehicle}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -265,13 +265,13 @@ export default function VehicleMenu(props) {
         <Fade in={openEditVehicle}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Sửa Vehicle
+              Sửa phương tiện
             </Typography>
 
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -279,7 +279,7 @@ export default function VehicleMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="VehicleNumber"
+              label="Biển số xe"
               variant="outlined"
               value={vehicleNumber}
               onChange={(event) => setVehicleNumber(event.target.value)}

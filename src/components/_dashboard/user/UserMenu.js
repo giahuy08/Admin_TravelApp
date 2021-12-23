@@ -223,7 +223,7 @@ export default function UserMoreMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
           <ListItemText
-            primary="Delete"
+            primary="Xóa"
             primaryTypographyProps={{ variant: "body2" }}
             onClick={handleClickDialogOpen}
           />
@@ -234,7 +234,7 @@ export default function UserMoreMenu(props) {
               <Icon icon={alertCircleOutline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
-              primary="Unblock"
+              primary="Hủy khóa"
               primaryTypographyProps={{ variant: "body2" }}
               onClick={handleUnblockUser}
             />
@@ -245,7 +245,7 @@ export default function UserMoreMenu(props) {
               <Icon icon={alertCircleOutline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
-              primary="Block"
+              primary="Khóa"
               primaryTypographyProps={{ variant: "body2" }}
               onClick={handleBlockUser}
             />
@@ -262,7 +262,7 @@ export default function UserMoreMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditUser}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -316,13 +316,13 @@ export default function UserMoreMenu(props) {
       
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Edit user
+              Chỉnh sửa
             </Typography>
 
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -339,7 +339,7 @@ export default function UserMoreMenu(props) {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Phone"
+              label="Số điện thoại"
               variant="outlined"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
@@ -347,7 +347,7 @@ export default function UserMoreMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Address"
+              label="Địa chỉ"
               variant="outlined"
               value={address}
               onChange={(event) => setAddress(event.target.value)}

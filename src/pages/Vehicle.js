@@ -52,9 +52,9 @@ import VehicleMenu from "src/components/_dashboard/user/VehicleMenu";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "type", label: "Type", alignRight: false },
-  { id: "vehicleNumber", label: "VehicleNumber", alignRight: false },
+  { id: "name", label: "Tên", alignRight: false },
+  { id: "type", label: "Loại", alignRight: false },
+  { id: "vehicleNumber", label: "Biển số xe", alignRight: false },
   { id: "status", label: "Hoạt động", alignRight: false },
   { id: "deleted", label: "Trạng thái", alignRight: false },
   // { id: 'star', label: 'Star', alignRight: false },
@@ -294,7 +294,7 @@ export default function Vehicle() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="Discount | Minimal-UI">
+    <Page title="Phương Tiện | TRAVEL">
       <Container>
         <Stack
           direction="row"
@@ -303,7 +303,7 @@ export default function Vehicle() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Vehicle (Số lượng {vehicle.length})
+            Phương tiện (Số lượng {vehicle.length})
           </Typography>
           <Button
             variant="contained"
@@ -312,7 +312,7 @@ export default function Vehicle() {
             startIcon={<Icon icon={plusFill} />}
             onClick={handleOpenAddTour}
           >
-            Thêm Vehicle
+            Thêm phương tiện
           </Button>
         </Stack>
 
@@ -461,14 +461,14 @@ export default function Vehicle() {
         <Fade in={openAddTour}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Thêm Vehicle
+              Thêm phương tiện
             </Typography>
 
            
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -476,7 +476,7 @@ export default function Vehicle() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="VehicleNumber"
+              label="Biển số xe"
               variant="outlined"
               value={vehiclenumber}
               onChange={(event) => setVehicleNumber(event.target.value)}
