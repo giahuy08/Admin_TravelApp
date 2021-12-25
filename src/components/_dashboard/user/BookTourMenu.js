@@ -63,12 +63,13 @@ export default function BookTourMenu(props) {
     console.log(id, status)
     callApi(`booktour/updateBookTour`, "PUT", {id, status})
       .then((res) => {
-        window.location.reload();
         setNotify({
           isOpen: true,
           message: "Hủy thành công",
           type: "success",
         });
+        window.location.reload();
+      
         
       })
       .catch((err) => {
@@ -84,7 +85,12 @@ export default function BookTourMenu(props) {
     callApi(`booktour/updateBookTour`, "PUT", {id, status})
       .then((res) => {
         console.log(res);
-        window.location.reload()
+        setNotify({
+          isOpen: true,
+          message: "Đã cập nhật tình trạng thanh toán tiền mặt",
+          type: "success",
+        });
+        window.location.reload();
         
       })
       .catch((err) => {
@@ -119,7 +125,7 @@ export default function BookTourMenu(props) {
           <ListItemIcon>
             <Icon icon={alertCircleOutline} width={24} height={24} />
           </ListItemIcon>
-          <ListItemText primary="Confirm" primaryTypographyProps={{ variant: 'body2' }} onClick={handleConfirmBookTour}/>
+          <ListItemText primary="Đã thanh toán" primaryTypographyProps={{ variant: 'body2' }} onClick={handleConfirmBookTour}/>
         </MenuItem> || ''}             
       </Menu>
 
