@@ -216,7 +216,7 @@ export default function Tour() {
     addtour.append("place", place);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
-    console.log(ImagesTour)
+ 
     
     for(let i =0;i<ImagesTour.length;i++) {
       addtour.append("ImagesTour",ImagesTour[i])
@@ -462,6 +462,7 @@ export default function Tour() {
                               idEnterprise={row.idEnterprise}
                               idVehicles={row.idVehicles}
                               deleted={deleted}
+                              imagesTour={imagesTour}
                             />
                           </TableCell>
                         </TableRow>

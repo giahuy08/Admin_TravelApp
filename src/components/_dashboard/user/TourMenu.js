@@ -74,7 +74,7 @@ export default function TourMenu(props) {
 
   const [vehicle, setVehicle] = React.useState([]);
   const [idVehicles, setidVehicles] = React.useState(props.idVehicles);
-
+  const images = props.imagesTour;
   const [name, setName] = React.useState(props.name);
   const [place, setPlace] = React.useState(props.place);
   const [detail, setDetail] = React.useState(props.detail);
@@ -146,18 +146,27 @@ export default function TourMenu(props) {
     })();
   }, []);
 
+  const removeImage= (index)=>{
+    //  const s = ImagesTour.filter((item, i) => i !==index )
+    
+      const images = Array.from(ImagesTour)
+      images.splice(index,1)
+      
+      console.log(images)
+      setImagesTour(images)
+
+  
+  }
+
+  const onChangeInput = (e) => {
+   
+    
+    setImagesTour(e.target.files);
+   
+  };
+
   const clickEditTour = async () => {
-    console.log({
-      idEnterprise,
-      idVehicles,
-      name,
-      place,
-      detail,
-      payment,
-      ImagesTour,
-      category,
-      time,
-    });
+  
 
     let link = "https://app-travelbe.herokuapp.com/tour/updateTour";
     let addtour = new FormData();
@@ -168,7 +177,9 @@ export default function TourMenu(props) {
     addtour.append("place", place);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
-    addtour.append("ImagesTour", ImagesTour);
+    for(let i =0;i<ImagesTour.length;i++) {
+      addtour.append("ImagesTour",ImagesTour[i])
+    }
     addtour.append("category", category);
     addtour.append("time", time);
     const response = await fetch(link, {
@@ -181,12 +192,14 @@ export default function TourMenu(props) {
     const content = await response.json();
     console.log(content.data);
     if (content.data) {
-      window.location.reload();
       setNotify({
         isOpen: true,
         message: "Sửa thành công",
         type: "success",
       });
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     } else {
       setNotify({ isOpen: true, message: "Sửa thất bại", type: "error" });
     }
@@ -351,7 +364,7 @@ export default function TourMenu(props) {
           timeout: 0,
         }}
       >
-        <Fade in={openEditTour} style={{ height: "90%", overflowY: "scroll" }}>
+        <Fade in={openEditTour} style={{ height: "76%", overflowY: "scroll" }}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
               Chỉnh sửa Tour
@@ -461,13 +474,41 @@ export default function TourMenu(props) {
               value={time}
               onChange={(event) => setTime(event.target.value)}
             />
-
+              <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+             Hình ảnh
+            </Typography>
+            <div style={{ display: "flex" }}>
+              {images &&
+                images.map((image, index) => {
+                  return (
+                    <div className="preview" key={index}>
+                      <img
+                        accept="image/*"
+                        className="vote-file-preview "
+                        src={image}
+                        // src={image}
+                        alt=""
+                        style={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "10px",
+                        }}
+                      />{" "}
+                    </div>
+                  );
+                })}
+            </div>
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+              Ảnh sửa
+            </Typography>
             <div class="input-file">
               <input
                 type="file"
+                multiple
                 name="file"
                 id="file"
-                onChange={(event) => setImagesTour(event.target.files[0])}
+                onChange={onChangeInput}
               />
               <label for="file" class="input-label">
                 <i class="fas fa-cloud-upload-alt icon-upload">
@@ -475,6 +516,26 @@ export default function TourMenu(props) {
                 </i>
               </label>
             </div>
+
+            <div style={{display: 'flex'}}>
+            
+            {ImagesTour && (
+              Array.from(ImagesTour).map((image,index)=> {return(
+                <div className="preview" key={index} >
+                <span className="close" onClick={(e)=>removeImage(index)} >
+                x
+              </span>
+                <img
+                
+                  accept="image/*"
+                  className="vote-file-preview "
+                  
+                  src={URL.createObjectURL(image)}
+                  // src={image}
+                  alt=""
+                  style={{position:'absolute',width:'100%',height:'100%',borderRadius:'10px'}}
+                /> </div>)}))}
+              </div>
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Nhớ kiểm tra trước khi lưu nha!
