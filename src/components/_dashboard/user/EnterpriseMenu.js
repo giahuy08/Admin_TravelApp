@@ -172,7 +172,7 @@ export default function EnterpriseMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
           <ListItemText
-            primary="Delete"
+            primary="Xóa"
             primaryTypographyProps={{ variant: "body2" }}
             onClick={handleClickDialogOpen}
           />
@@ -190,7 +190,7 @@ export default function EnterpriseMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditEnterprise}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -241,13 +241,13 @@ export default function EnterpriseMenu(props) {
         <Fade in={openEditEnterprise}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Sửa Enterprise
+              Sửa thông tin doanh nghiệp
             </Typography>
 
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -257,7 +257,7 @@ export default function EnterpriseMenu(props) {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}

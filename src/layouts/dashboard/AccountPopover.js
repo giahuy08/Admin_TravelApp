@@ -16,7 +16,7 @@ import account from '../../_mocks_/account';
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
+    label: 'Trang chủ',
     icon: homeFill,
     linkTo: '/dashboard/app'
   },
@@ -112,7 +112,7 @@ export default function AccountPopover() {
 
         <Box sx={{ p: 2, pt: 1.5 }}>
           <Button fullWidth color="inherit" variant="outlined" onClick={clickLogout}>
-            Logout
+            Đăng xuất
           </Button>
         </Box>
       </MenuPopover>

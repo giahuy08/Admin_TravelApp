@@ -7,53 +7,58 @@ import lockFill from '@iconify/icons-eva/lock-fill';
 import personAddFill from '@iconify/icons-eva/person-add-fill';
 import alertTriangleFill from '@iconify/icons-eva/alert-triangle-fill';
 import trademark from '@iconify/icons-ant-design/trademark'
+import pricetagsFill from '@iconify/icons-eva/pricetags-fill';
+import globe2Fill from '@iconify/icons-eva/globe-2-fill';
+import briefcaseFill from '@iconify/icons-eva/briefcase-fill';
+import carFill from '@iconify/icons-eva/car-fill';
+import homeFill from '@iconify/icons-eva/home-fill';
 // ----------------------------------------------------------------------
 
 const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
 
 const sidebarConfig = [
   {
-    title: 'dashboard',
+    title: 'Thống kê',
     path: '/dashboard/app',
     icon: getIcon(pieChart2Fill)
   },
   {
-    title: 'User',
+    title: 'Người dùng',
     path: '/dashboard/user',
     icon: getIcon(peopleFill)
   },
   {
     title: 'Tour',
     path: '/dashboard/tour',
-    icon: getIcon(trademark)
+    icon: getIcon(globe2Fill)
   },
   {
-    title: 'Book Tour',
+    title: 'Các Tour đã đặt',
     path: '/dashboard/booktour',
     icon: getIcon(shoppingBagFill)
   },
   {
-    title: 'Discount',
+    title: 'Mã giảm giá',
     path: '/dashboard/discount',
-    icon: getIcon(fileTextFill)
+    icon: getIcon(pricetagsFill)
   },
   {
-    title: 'Vehicle',
+    title: 'Phương tiện',
     path: '/dashboard/vehicle',
-    icon: getIcon(fileTextFill)
+    icon: getIcon(carFill)
   },
   {
-    title: 'Enterprise',
+    title: 'Đối tác',
     path: '/dashboard/enterprise',
-    icon: getIcon(fileTextFill)
+    icon: getIcon(briefcaseFill)
   },
   {
-    title: 'Room',
+    title: 'Phòng ở',
     path: '/dashboard/room',
-    icon: getIcon(fileTextFill)
+    icon: getIcon(homeFill)
   },
   {
-    title: 'Table',
+    title: 'Bàn ăn',
     path: '/dashboard/table',
     icon: getIcon(fileTextFill)
   },

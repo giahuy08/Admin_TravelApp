@@ -107,9 +107,9 @@ export default function AppOrderTimeline() {
           display: 'none'
         }
       }}
-      style={{ height: "17%", overflowY: "scroll" }}
+      style={{ height: "33%", overflowY: "scroll" }}
     >
-      <CardHeader title="Book Tour Timeline" />
+      <CardHeader title="Các tour mới đặt" />
       <CardContent>
         <Timeline>
           {data && data.map((item, index) => (

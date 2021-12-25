@@ -209,7 +209,7 @@ export default function RoomMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
           <ListItemText
-            primary="Delete"
+            primary="Xóa"
             primaryTypographyProps={{ variant: "body2" }}
             onClick={handleClickDialogOpen}
           />
@@ -225,7 +225,7 @@ export default function RoomMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditTour}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -277,7 +277,7 @@ export default function RoomMenu(props) {
         <Fade in={openEditTour}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Sửa Table
+              Sửa bán ăn
             </Typography>
 
             <Autocomplete
@@ -289,7 +289,7 @@ export default function RoomMenu(props) {
               disableClearable
               options={enterprise.map((e) => e.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Enterprise" />
+                <TextField {...params} label="Doanh nghiệp" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
@@ -303,7 +303,7 @@ export default function RoomMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -312,7 +312,7 @@ export default function RoomMenu(props) {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Size"
+              label="Loại"
               variant="outlined"
               value={size}
               onChange={(event) => setSize(event.target.value)}
@@ -321,7 +321,7 @@ export default function RoomMenu(props) {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Floor"
+              label="Tầng"
               variant="outlined"
               value={floor}
               onChange={(event) => setFloor(event.target.value)}
@@ -331,7 +331,7 @@ export default function RoomMenu(props) {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}
@@ -340,7 +340,7 @@ export default function RoomMenu(props) {
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               type="number"
-              label="Price(VNĐ)"
+              label="Giá(VNĐ)"
               variant="outlined"
               value={price}
               onChange={(event) => setPrice(event.target.value)}
@@ -357,7 +357,7 @@ export default function RoomMenu(props) {
               startIcon={<Icon icon={plusFill} />}
               onClick={clickEditTour}
             >
-              Save
+              Lưu
             </Button>
           </Box>
         </Fade>

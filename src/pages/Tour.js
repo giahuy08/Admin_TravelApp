@@ -53,12 +53,12 @@ import "./AddTour.css";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: "name", label: "Name", alignRight: false },
-  { id: "payment", label: "Payment", alignRight: false },
-  { id: "time", label: "Time", alignRight: false },
-  { id: "star", label: "Star", alignRight: false },
-  { id: "place", label: "Place", alignRight: false },
-  { id: "deleted", label: "Deleted", alignRight: false },
+  { id: "name", label: "Tên", alignRight: false },
+  { id: "payment", label: "Giá(VNĐ)", alignRight: false },
+  { id: "time", label: "Thời gian", alignRight: false },
+  { id: "star", label: "Đánh giá", alignRight: false },
+  { id: "place", label: "Địa điểm", alignRight: false },
+  { id: "deleted", label: "Tình trạng", alignRight: false },
   { id: "" },
 ];
 
@@ -336,7 +336,7 @@ export default function Tour() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | Minimal-UI">
+    <Page title="Tour | TRAVEL">
       <Container>
         <Stack
           direction="row"
@@ -345,7 +345,7 @@ export default function Tour() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-            Tour {tours.length}
+          Tour (Số lượng {tours.length})
           </Typography>
           <Button
             variant="contained"
@@ -512,7 +512,7 @@ export default function Tour() {
         <Fade in={openAddTour} style={{ height: "90%", overflowY: "scroll" }}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Add New Tour
+              Thêm tour mới
             </Typography>
 
             <Autocomplete
@@ -521,7 +521,7 @@ export default function Tour() {
               disableClearable
               options={enterprise.map((enterprise) => enterprise.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Enterprise" />
+                <TextField {...params} label="Doanh nghiệp" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
@@ -538,7 +538,7 @@ export default function Tour() {
               disableClearable
               options={vehicle.map((vehicle) => vehicle.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Vehicle" />
+                <TextField {...params} label="Phương tiện" />
               )}
               onChange={(event, newValue) => {
                 vehicle.map((vehicle) => {
@@ -551,7 +551,7 @@ export default function Tour() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -559,7 +559,7 @@ export default function Tour() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Place"
+              label="Địa điểm"
               variant="outlined"
               value={place}
               onChange={(event) => setPlace(event.target.value)}
@@ -569,7 +569,7 @@ export default function Tour() {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}
@@ -577,7 +577,7 @@ export default function Tour() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Payment(VNĐ)"
+              label="Giá(VNĐ)"
               variant="outlined"
               value={payment}
               onChange={(event) => setPayment(event.target.value)}
@@ -608,7 +608,7 @@ export default function Tour() {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Time"
+              label="Thời gian"
               variant="outlined"
               value={time}
               onChange={(event) => setTime(event.target.value)}

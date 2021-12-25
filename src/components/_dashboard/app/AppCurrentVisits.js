@@ -43,7 +43,7 @@ export default function AppCurrentVisits(props) {
       theme.palette.warning.main,
       theme.palette.error.main
     ],
-    labels: ['Complete', 'Await', 'Cancel'],
+    labels: ['Đã Đặt', 'Đang Chờ', 'Đã Hủy'],
     stroke: { colors: [theme.palette.background.paper] },
     legend: { floating: true, horizontalAlign: 'center' },
     dataLabels: { enabled: true, dropShadow: { enabled: false } },
@@ -63,7 +63,7 @@ export default function AppCurrentVisits(props) {
 
   return (
     <Card>
-      <CardHeader title="Statistic Book Tour" />
+      <CardHeader title="Thông kê đặt tour" />
       <ChartWrapperStyle dir="ltr">
         <ReactApexChart type="pie" series={props.totalStatisticBookTour} options={chartOptions} height={280} />
       </ChartWrapperStyle>

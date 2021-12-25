@@ -262,7 +262,7 @@ export default function TourMenu(props) {
             <Icon icon={trash2Outline} width={24} height={24} />
           </ListItemIcon>
           <ListItemText
-            primary="Delete"
+            primary="Xóa"
             primaryTypographyProps={{ variant: "body2" }}
             onClick={handleClickDialogOpen}
           />
@@ -274,7 +274,7 @@ export default function TourMenu(props) {
               <Icon icon={alertCircleOutline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
-              primary="Unblock"
+              primary="Hủy khóa"
               primaryTypographyProps={{ variant: "body2" }}
               onClick={handleUnblockTour}
             />
@@ -285,7 +285,7 @@ export default function TourMenu(props) {
               <Icon icon={alertCircleOutline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
-              primary="Block"
+              primary="Khóa"
               primaryTypographyProps={{ variant: "body2" }}
               onClick={handleBlockTour}
             />
@@ -302,7 +302,7 @@ export default function TourMenu(props) {
           </ListItemIcon>
           <ListItemText
             onClick={handleOpenEditTour}
-            primary="Edit"
+            primary="Chỉnh sửa"
             primaryTypographyProps={{ variant: "body2" }}
           />
         </MenuItem>
@@ -354,7 +354,7 @@ export default function TourMenu(props) {
         <Fade in={openEditTour} style={{ height: "90%", overflowY: "scroll" }}>
           <Box sx={style}>
             <Typography id="transition-modal-title" variant="h6" component="h2">
-              Edit Tour
+              Chỉnh sửa Tour
             </Typography>
 
             <Autocomplete
@@ -366,7 +366,7 @@ export default function TourMenu(props) {
               disableClearable
               options={enterprise.map((e) => e.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Enterprise" />
+                <TextField {...params} label="Doanh nghiệp" />
               )}
               onChange={(event, newValue) => {
                 enterprise.map((enterprise) => {
@@ -386,7 +386,7 @@ export default function TourMenu(props) {
               disableClearable
               options={vehicle.map((vehicle) => vehicle.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Vehicle" />
+                <TextField {...params} label="Phương tiện" />
               )}
               onChange={(event, newValue) => {
                 vehicle.map((vehicle) => {
@@ -399,7 +399,7 @@ export default function TourMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Name"
+              label="Tên"
               variant="outlined"
               value={name}
               onChange={(event) => setName(event.target.value)}
@@ -407,7 +407,7 @@ export default function TourMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Place"
+              label="Địa điểm"
               variant="outlined"
               value={place}
               onChange={(event) => setPlace(event.target.value)}
@@ -417,7 +417,7 @@ export default function TourMenu(props) {
               multiline
               rows={2}
               id="outlined-basic"
-              label="Detail"
+              label="Chi tiết"
               variant="outlined"
               value={detail}
               onChange={(event) => setDetail(event.target.value)}
@@ -425,7 +425,7 @@ export default function TourMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Payment(VNĐ)"
+              label="Giá(VNĐ)"
               variant="outlined"
               value={payment}
               onChange={(event) => setPayment(event.target.value)}
@@ -456,7 +456,7 @@ export default function TourMenu(props) {
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
-              label="Time"
+              label="Thời gian"
               variant="outlined"
               value={time}
               onChange={(event) => setTime(event.target.value)}
@@ -477,7 +477,7 @@ export default function TourMenu(props) {
             </div>
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-              Nhớ kiểm tra trước khi save nha!
+              Nhớ kiểm tra trước khi lưu nha!
             </Typography>
 
             <Button
@@ -487,7 +487,7 @@ export default function TourMenu(props) {
               startIcon={<Icon icon={plusFill} />}
               onClick={clickEditTour}
             >
-              Save
+              Lưu
             </Button>
           </Box>
         </Fade>

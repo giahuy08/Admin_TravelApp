@@ -47,12 +47,12 @@ import USERLIST from '../_mocks_/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
+  { id: 'name', label: 'Tên', alignRight: false },
   { id: 'email', label: 'Email', alignRight: false },
-  { id: 'phone', label: 'Phone', alignRight: false },
-  { id: 'address', label: 'Address', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'deleted', label: 'Deleted', alignRight: false },
+  { id: 'phone', label: 'Số điện thoại', alignRight: false },
+  { id: 'address', label: 'Địa chỉ', alignRight: false },
+  { id: 'role', label: 'Tài khoản', alignRight: false },
+  { id: 'deleted', label: 'Tình trạng', alignRight: false },
   { id: '' }
 ];
 
@@ -229,11 +229,11 @@ export default function User() {
   const isUserNotFound = filteredUsers.length === 0;
 
   return (
-    <Page title="User | TravelApp">
+    <Page title="Người Dùng | TRAVEL">
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User (số lượng {allUser.length}) 
+            Người dùng (số lượng {allUser.length}) 
           </Typography>
           <Button
             variant="contained"
@@ -365,11 +365,11 @@ export default function User() {
 
             
 
-          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" label="Name" variant="outlined" value={name} onChange={(event)=>setName(event.target.value)}/>
+          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" label="Tên" variant="outlined" value={name} onChange={(event)=>setName(event.target.value)}/>
           <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="email" label="Email" variant="outlined" value={email} onChange={(event)=>setEmail(event.target.value)}/>
-          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="password" label="Password" variant="outlined" value={password} onChange={(event)=>setPassword(event.target.value)}/>
-          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="number" label="Phone" variant="outlined" value={phone} onChange={(event)=>setPhone(event.target.value)}/>
-          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" label="Address" variant="outlined" value={address} onChange={(event)=>setAddress(event.target.value)}/>    
+          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="password" label="Mật khẩu" variant="outlined" value={password} onChange={(event)=>setPassword(event.target.value)}/>
+          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="number" label="Số điện thoại" variant="outlined" value={phone} onChange={(event)=>setPhone(event.target.value)}/>
+          <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" label="Địa chỉ" variant="outlined" value={address} onChange={(event)=>setAddress(event.target.value)}/>    
         
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Nhớ điền đầy đủ thông tin nha!

@@ -56,7 +56,7 @@ export default function AppConversionRates() {
 
   return (
     <Card>
-      <CardHeader title="Statistic Tour" subheader="" />
+      <CardHeader title="Các tour của ứng dụng" subheader="" />
       <Box sx={{ mx: 3 }} dir="ltr">
         <ReactApexChart type="bar" series={[{ data: data }]} options={chartOptions} height={364} />
       </Box>
