@@ -49,7 +49,7 @@ import TourMenu from '../components/_dashboard/user/TourMenu'
 //
 import USERLIST from "../_mocks_/user";
 //css
-import AddTour from "./AddTour.css";
+import "./AddTour.css";
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -115,6 +115,9 @@ export default function Tour() {
   const [orderBy, setOrderBy] = useState("name");
   const [filterName, setFilterName] = useState("");
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  // Files
+
 
   //biến add tour
   const [openAddTour, setOpenAddTour] = React.useState(false);
@@ -213,7 +216,15 @@ export default function Tour() {
     addtour.append("place", place);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
-    addtour.append("ImagesTour", ImagesTour);
+    console.log(ImagesTour)
+    
+    for(let i =0;i<ImagesTour.length;i++) {
+      addtour.append("ImagesTour",ImagesTour[i])
+    }
+    
+        
+    
+    // addtour.append("ImagesTour", ImagesTour);
     addtour.append("category", category);
     addtour.append("time", time);
     const response = await fetch(link, {
@@ -263,6 +274,18 @@ export default function Tour() {
     setSelected([]);
   };
 
+  const removeImage= (index)=>{
+    //  const s = ImagesTour.filter((item, i) => i !==index )
+    
+      const images = Array.from(ImagesTour)
+      images.splice(index,1)
+      
+      console.log(images)
+      setImagesTour(images)
+
+  
+  }
+
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
@@ -292,6 +315,13 @@ export default function Tour() {
 
   const handleFilterByName = (event) => {
     setFilterName(event.target.value);
+  };
+
+  const onChangeInput = (e) => {
+   
+    
+    setImagesTour(e.target.files);
+   
   };
 
   const emptyRows =
@@ -587,9 +617,10 @@ export default function Tour() {
             <div class="input-file">
               <input
                 type="file"
+                multiple
                 name="file"
                 id="file"
-                onChange={(event) => setImagesTour(event.target.files[0])}
+                onChange={onChangeInput}
               />
               <label for="file" class="input-label">
                 <i class="fas fa-cloud-upload-alt icon-upload">
@@ -597,6 +628,27 @@ export default function Tour() {
                 </i>
               </label>
             </div>
+              <div style={{display: 'flex'}}>
+            
+            {ImagesTour && (
+              Array.from(ImagesTour).map((image,index)=> {return(
+                <div className="preview" key={index} >
+                <span className="close" onClick={(e)=>removeImage(index)} >
+                x
+              </span>
+                <img
+                
+                  accept="image/*"
+                  className="vote-file-preview "
+                  
+                  src={URL.createObjectURL(image)}
+                  // src={image}
+                  alt=""
+                  style={{position:'absolute',width:'100%',height:'100%',borderRadius:'10px'}}
+                /> </div>)}))}
+              </div>
+              
+              
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Nhớ điền đầy đủ thông tin nha!
