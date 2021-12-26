@@ -149,9 +149,14 @@ export default function Discount() {
     console.log(content.data)
     if(content.data){
       setNotify({ isOpen: true, message: "Thêm thành công", type: "success" });
-      window.location.reload()
+      setTimeout(function () {
+        window.location.reload();
+      }, 2000);
     }else {
-      window.alert('Thất bại !')
+      setNotify({ isOpen: true, message: "Thêm thất bại", type: "error" });
+      setTimeout(function () {
+        window.location.reload();
+      }, 1000);
     }
   }
 
