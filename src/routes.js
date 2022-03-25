@@ -18,6 +18,7 @@ import Vehicle from './pages/Vehicle';
 import Enterprise from './pages/Enterprise';
 import HotelRoom from './pages/HotelRoom';
 import RestaurantTable from './pages/RestaurantTable';
+import Chat from './pages/Chat';
 
 // ----------------------------------------------------------------------
 
@@ -50,6 +51,8 @@ export default function Router() {
         { path: 'enterprise', element: < Enterprise/>},
         { path: 'room', element: < HotelRoom/>},
         { path: 'table', element: < RestaurantTable/>},
+        { path: 'chat', element: < Chat/>},
+
       ]
     },
     { path: '*', element: <Navigate to="/404" replace /> }

@@ -44,11 +44,12 @@ export default function LoginForm() {
       };
       callApi(`user/loginAdmin`, "POST", data)
         .then((res) => {
-          console.log(res);
+          // console.log(res.data.data.user._id);
           console.log(res.data.data.token)       
           localStorage.setItem("accessToken",res.data.data.token)
           localStorage.setItem("name",res.data.data.user.name)
           localStorage.setItem("email",res.data.data.user.email)
+          localStorage.setItem("id",res.data.data.user._id);
 
           setNotify({
             isOpen: true,

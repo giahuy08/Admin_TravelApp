@@ -148,7 +148,7 @@ export default function User() {
       verify
     })
   
-    let link = 'https://app-travelbe.herokuapp.com/admin/createUser'
+    let link = 'https://be-travel.herokuapp.com/admin/createUser'
     
     const response = await fetch(link, {
         method: 'POST',

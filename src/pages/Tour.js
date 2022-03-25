@@ -162,7 +162,7 @@ export default function Tour() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -180,7 +180,7 @@ export default function Tour() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/vehicle/getAllVehicle",
+        "https://be-travel.herokuapp.com/vehicle/getAllVehicle",
         {
           method: "GET",
           headers: {
@@ -208,7 +208,7 @@ export default function Tour() {
       time,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/tour/createTour";
+    let link = "https://be-travel.herokuapp.com/tour/createTour";
     let addtour = new FormData();
     addtour.append("idEnterprise", idEnterprise);
     addtour.append("idVehicles[]", idVehicles);

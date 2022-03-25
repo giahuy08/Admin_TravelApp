@@ -155,7 +155,7 @@ export default function RestaurantTable() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -182,7 +182,7 @@ export default function RestaurantTable() {
     });
 
     let link =
-      "https://app-travelbe.herokuapp.com/restauranttable/createRestaurantTable";
+      "https://be-travel.herokuapp.com/restauranttable/createRestaurantTable";
 
     const response = await fetch(link, {
       method: "POST",

@@ -98,7 +98,7 @@ export default function EnterpriseMenu(props) {
       ImagesEnterprise,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/enterprise/updateEnterprise";
+    let link = "https://be-travel.herokuapp.com/enterprise/updateEnterprise";
     let editvehicle = new FormData();
     editvehicle.append("id", props.id);
     editvehicle.append("name", name);

@@ -132,7 +132,7 @@ export default function Discount() {
         endDiscount
     })
   
-    let link = 'https://app-travelbe.herokuapp.com/discount/createDiscount'
+    let link = 'https://be-travel.herokuapp.com/discount/createDiscount'
     
     const response = await fetch(link, {
         method: 'POST',

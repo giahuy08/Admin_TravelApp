@@ -160,7 +160,7 @@ export default function Vehicle() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -175,10 +175,12 @@ export default function Vehicle() {
     })();
   }, []);
 
+ 
+
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/vehicle/getAllVehicle",
+        "https://be-travel.herokuapp.com/vehicle/getAllVehicle",
         {
           method: "GET",
           headers: {
@@ -196,7 +198,7 @@ export default function Vehicle() {
   const clickAddVehicle = async () => {
    
 
-    let link = "https://app-travelbe.herokuapp.com/vehicle/createVehicle";
+    let link = "https://be-travel.herokuapp.com/vehicle/createVehicle";
     let addvehicle = new FormData();
   
     addvehicle.append("name", name);

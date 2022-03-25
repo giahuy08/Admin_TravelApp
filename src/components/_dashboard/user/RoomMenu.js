@@ -94,7 +94,7 @@ export default function RoomMenu(props) {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -129,7 +129,7 @@ export default function RoomMenu(props) {
       checkOut,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/hotelroom/updateHotelRoom";
+    let link = "https://be-travel.herokuapp.com/hotelroom/updateHotelRoom";
 
     const response = await fetch(link, {
       method: "PUT",

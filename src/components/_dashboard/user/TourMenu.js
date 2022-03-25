@@ -113,7 +113,7 @@ export default function TourMenu(props) {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -131,7 +131,7 @@ export default function TourMenu(props) {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://app-travelbe.herokuapp.com/vehicle/getAllVehicle",
+        "https://be-travel.herokuapp.com/vehicle/getAllVehicle",
         {
           method: "GET",
           headers: {
@@ -168,7 +168,7 @@ export default function TourMenu(props) {
   const clickEditTour = async () => {
   
 
-    let link = "https://app-travelbe.herokuapp.com/tour/updateTour";
+    let link = "https://be-travel.herokuapp.com/tour/updateTour";
     let addtour = new FormData();
     addtour.append("id", props.id);
     addtour.append("idEnterprise", idEnterprise);

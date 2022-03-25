@@ -120,7 +120,7 @@ export default function VehicleMenu(props) {
       time,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/vehicle/updateVehicle";
+    let link = "https://be-travel.herokuapp.com/vehicle/updateVehicle";
     let editvehicle = new FormData();
     editvehicle.append("id", props.id);
     editvehicle.append("name", name);

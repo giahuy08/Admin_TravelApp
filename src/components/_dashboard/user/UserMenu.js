@@ -102,7 +102,7 @@ export default function UserMoreMenu(props) {
       verify,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/admin/updateUser";
+    let link = "https://be-travel.herokuapp.com/admin/updateUser";
     const response = await fetch(link, {
       method: "PUT",
       headers: {

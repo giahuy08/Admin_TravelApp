@@ -151,7 +151,7 @@ export default function Enterprise() {
       category,
     });
 
-    let link = "https://app-travelbe.herokuapp.com/enterprise/createEnterprise";
+    let link = "https://be-travel.herokuapp.com/enterprise/createEnterprise";
     let addtour = new FormData();
     addtour.append("name", name);
     addtour.append("detail", detail);
