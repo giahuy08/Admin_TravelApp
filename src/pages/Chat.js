@@ -1,22 +1,18 @@
-import { useState, useRef, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
-import Message from "./message/Message";
-import "./chat.css";
-import callApi from "src/api/apiService";
 import CircularProgress from "@mui/material/CircularProgress";
-import { io } from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
+import callApi from "src/api/apiService";
+import Message from "../components/message/Message";
+import "./chat.css";
 import SocketService from "./socket";
-import { ConstructionOutlined } from "@mui/icons-material";
 
 export default function Chat() {
   const [currentChat, setCurrentChat] = useState([]);
   const [conversations, setConversations] = useState([]);
+  const [room, setRoom] = useState("");
   const [newMessage, setNewMessage] = useState("");
   const token = localStorage.getItem("accessToken");
   const [avatar, setAvatar] = useState("");
-  // const urlSocket = useRef();
-  // urlSocket.current = `https://be-travel.herokuapp.com?token=Bearer ${token}`;
-  // var socket = useRef();
   const [messages, setMessages] = useState([]);
   console.log("re render");
   console.log(currentChat);
@@ -35,48 +31,43 @@ export default function Chat() {
   const handleRoom = (idRoom) => {
     // socket.current.emit("JOIN_ROOM_CSS", {idUser:idRoom} );
     SocketService.socket.emit("JOIN_ROOM_CSS", { idUser: idRoom });
-
     getMessage(idRoom);
   };
 
   const getMessage = (idRoom) => {
-    callApi(`chat/getMessage?idRoom=${idRoom}&skip=1&limit=15`, "GET").then(
+    callApi(`chat/getMessage?idRoom=${idRoom}&skip=0&limit=15`, "GET").then(
       (res) => {
         setMessages(res.data.data.reverse());
       }
     );
-    // console.log(res)
   };
 
   useEffect(() => {
     if (token) {
       // console.log(`123`, token);
-     const urlSocket  = `https://be-travel.herokuapp.com?token=Bearer ${token}`;
+      const urlSocket = `https://be-travel.herokuapp.com?token=Bearer ${token}`;
       connectSocket(urlSocket);
     }
-  
-   
-  }, [token])
-  
 
-  useEffect(() => {
-    // connectSocket(urlSocket.current);
-    onMessage()
-    const getConversations = async () => {
-      try {
-        const res = await callApi(`chat/getRoom`, "GET");
+    onMessage();
 
-        setConversations(res.data.data);
-      } catch (err) {
+    callApi(`chat/getRoom`)
+      .then((res) => setConversations(res.data.data))
+      .catch((err) => {
         console.log(err);
-      }
+      });
+    // getConversations();
+
+    return () => {
+      SocketService.disconnectSocket();
     };
-    getConversations();
   }, []);
 
   const onMessage = () => {
     if (SocketService.socket) {
-      SocketService.socket.on("SEND_MESSAGE_SSC", (data) => {setMessages((prev)=>[...prev,data])});
+      SocketService.socket.on("SEND_MESSAGE_SSC", (data) => {
+        setMessages((prev) => [...prev, data]);
+      });
     }
   };
   const handleSubmit = (e) => {
@@ -85,15 +76,13 @@ export default function Chat() {
     console.log(newMessage);
 
     SocketService.socket.emit("SEND_MESSAGE_CSS", { message: newMessage });
-    callApi(
-      `chat/getMessage?idRoom=${currentChat.idRoom}&skip=1&limit=15`,
-      "GET"
-    ).then((res) => {
-      console.log(" ds tin nhắn");
-      console.log(res.data.data);
-      setMessages(res.data.data.reverse());
-      
-    });
+    callApi(`chat/getMessage?idRoom=${room}&skip=0&limit=15`, "GET").then(
+      (res) => {
+        console.log(" ds tin nhắn");
+        console.log(res.data.data);
+        setMessages(res.data.data.reverse());
+      }
+    );
     setNewMessage("");
   };
 
@@ -121,6 +110,7 @@ export default function Chat() {
                 // onClick={() => setCurrentChat(c)}
                 onClick={() => {
                   setCurrentChat(c);
+                  setRoom(c.idRoom);
                   setAvatar(c.avatar);
                   handleRoom(c.idRoom);
                 }}
@@ -136,7 +126,7 @@ export default function Chat() {
 
       <div className="chatBox">
         <div className="chatBoxWrapper">
-          {currentChat !== null ? (
+          {room !== "" ? (
             <>
               <div className="chatBoxTop">
                 {messages.map((m, index) => (

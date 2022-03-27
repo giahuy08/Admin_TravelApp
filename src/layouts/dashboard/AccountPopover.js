@@ -42,6 +42,8 @@ export default function AccountPopover() {
     localStorage.removeItem("accessToken")
     localStorage.removeItem("name")
     localStorage.removeItem("email")
+    localStorage.removeItem("id")
+
     navigate('/', { replace: true });
   }
 

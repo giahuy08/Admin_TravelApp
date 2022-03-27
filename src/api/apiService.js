@@ -7,6 +7,8 @@ export default function callApi(endpoint, method='GET',body){
         method,
         url:`${API_URL}/${endpoint}`,
         headers:{
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache',
             "Authorization":"Bearer " + localStorage.getItem("accessToken")
         },
         data:body,

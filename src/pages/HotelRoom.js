@@ -1,55 +1,38 @@
-import { filter } from "lodash";
-import { Icon } from "@iconify/react";
-import * as React from "react";
-// import { sentenceCase } from 'change-case';
-import { useState, useEffect } from "react";
 import plusFill from "@iconify/icons-eva/plus-fill";
-import { Link as RouterLink } from "react-router-dom";
-import callApi from "src/api/apiService";
+import { Icon } from "@iconify/react";
 // material
 import {
-  Card,
-  Table,
-  Stack,
-  Avatar,
-  Button,
-  Checkbox,
-  TableRow,
-  TableBody,
-  TableCell,
-  Container,
-  Typography,
-  TableContainer,
-  TablePagination,
+  Button, Card, Checkbox, Container, Stack, Table, TableBody,
+  TableCell, TableContainer,
+  TablePagination, TableRow, Typography
 } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import Fade from "@mui/material/Fade";
+import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
-import Autocomplete from "@mui/material/Autocomplete";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import { filter } from "lodash";
+import * as React from "react";
+// import { sentenceCase } from 'change-case';
+import { useEffect, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import callApi from "src/api/apiService";
+import RoomMenu from "src/components/_dashboard/user/RoomMenu";
+import Label from "../components/Label";
+//
+import Message from "../components/Message";
 // components
 import Page from "../components/Page";
-import Label from "../components/Label";
 import Scrollbar from "../components/Scrollbar";
 import SearchNotFound from "../components/SearchNotFound";
 import {
   UserListHead,
-  UserListToolbar,
-  UserMoreMenu,
+  UserListToolbar
 } from "../components/_dashboard/user";
-//
-import Message from "../components/Message";
-
-import USERLIST from "../_mocks_/user";
 //css
-import  "./AddTour.css";
-import RoomMenu from "src/components/_dashboard/user/RoomMenu";
+import "./AddTour.css";
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -157,7 +140,7 @@ export default function HotelRoom() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com /enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -173,7 +156,7 @@ export default function HotelRoom() {
   }, []);
 
   const clickAddRoom = async () => {
-    let link = "https://be-travel.herokuapp.com/hotelroom/createHotelRoom";
+    let link = "https://be-travel.herokuapp.com /hotelroom/createHotelRoom";
 
     const response = await fetch(link, {
       method: "POST",
