@@ -38,18 +38,16 @@ import Page from "../components/Page";
 import Label from "../components/Label";
 import Scrollbar from "../components/Scrollbar";
 import SearchNotFound from "../components/SearchNotFound";
-import Message from '../components/Message';
-import {
-  UserListHead,
-  UserListToolbar,
- 
-} from "../components/_dashboard/user";
+import Message from "../components/Message";
+import { UserListHead, UserListToolbar } from "../components/_dashboard/user";
 
-import TourMenu from '../components/_dashboard/user/TourMenu'
+import TourMenu from "../components/_dashboard/user/TourMenu";
 //
 import USERLIST from "../_mocks_/user";
 //css
 import "./AddTour.css";
+import Map from "./Map";
+
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
@@ -118,7 +116,6 @@ export default function Tour() {
 
   // Files
 
-
   //biến add tour
   const [openAddTour, setOpenAddTour] = React.useState(false);
   const handleOpenAddTour = () => setOpenAddTour(true);
@@ -132,6 +129,8 @@ export default function Tour() {
 
   const [name, setName] = React.useState("");
   const [place, setPlace] = React.useState("");
+  const [latitude, setLatitude] = React.useState("");
+  const [longtitude, setLongtitude] = React.useState("");
   const [detail, setDetail] = React.useState("");
   const [payment, setPayment] = React.useState("");
   const [time, setTime] = React.useState("");
@@ -148,6 +147,13 @@ export default function Tour() {
 
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
+  };
+
+  const handleLatitude = (data) => {
+    setLatitude(data);
+  };
+  const handleLongtitude = (data) => {
+    setLongtitude(data);
   };
 
   const handleCloseCategory = () => {
@@ -214,16 +220,15 @@ export default function Tour() {
     addtour.append("idVehicles[]", idVehicles);
     addtour.append("name", name);
     addtour.append("place", place);
+    addtour.append("latitude", latitude);
+    addtour.append("longtitude", longtitude);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
- 
-    
-    for(let i =0;i<ImagesTour.length;i++) {
-      addtour.append("ImagesTour",ImagesTour[i])
+
+    for (let i = 0; i < ImagesTour.length; i++) {
+      addtour.append("imagesTour", ImagesTour[i]);
     }
-    
-        
-    
+
     // addtour.append("ImagesTour", ImagesTour);
     addtour.append("category", category);
     addtour.append("time", time);
@@ -243,7 +248,6 @@ export default function Tour() {
       }, 2000);
     } else {
       setNotify({ isOpen: true, message: "Thêm thất bại", type: "error" });
-     
     }
   };
 
@@ -274,17 +278,15 @@ export default function Tour() {
     setSelected([]);
   };
 
-  const removeImage= (index)=>{
+  const removeImage = (index) => {
     //  const s = ImagesTour.filter((item, i) => i !==index )
-    
-      const images = Array.from(ImagesTour)
-      images.splice(index,1)
-      
-      console.log(images)
-      setImagesTour(images)
 
-  
-  }
+    const images = Array.from(ImagesTour);
+    images.splice(index, 1);
+
+    console.log(images);
+    setImagesTour(images);
+  };
 
   const handleClick = (event, name) => {
     const selectedIndex = selected.indexOf(name);
@@ -318,10 +320,7 @@ export default function Tour() {
   };
 
   const onChangeInput = (e) => {
-   
-    
     setImagesTour(e.target.files);
-   
   };
 
   const emptyRows =
@@ -345,7 +344,7 @@ export default function Tour() {
           mb={5}
         >
           <Typography variant="h4" gutterBottom>
-          Tour (Số lượng {tours.length})
+            Tour (Số lượng {tours.length})
           </Typography>
           <Button
             variant="contained"
@@ -387,6 +386,8 @@ export default function Tour() {
                         payment,
                         time,
                         place,
+                        latitude,
+                        longtitude,
                         star,
                         imagesTour,
                         deleted,
@@ -463,6 +464,8 @@ export default function Tour() {
                               idVehicles={row.idVehicles}
                               deleted={deleted}
                               imagesTour={imagesTour}
+                              latitude = {latitude}
+                              longtitude = {longtitude}
                             />
                           </TableCell>
                         </TableRow>
@@ -565,6 +568,28 @@ export default function Tour() {
               value={place}
               onChange={(event) => setPlace(event.target.value)}
             />
+
+            <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              label="Latitude"
+              variant="outlined"
+              value={latitude}
+              // onChange={(event) => handleLatitude(event)}
+            />
+             <TextField
+              style={{ marginTop: "10px", width: "100%",marginBottom:"10px" }}
+              id="outlined-basic"
+              label="Longtitude"
+              variant="outlined"
+              value={longtitude}
+              // onChange={ (event) => handleLongtitude(event)}
+            />
+
+
+            <Map handleLat={handleLatitude} handleLng={handleLongtitude} />
+            
+
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               multiline
@@ -629,27 +654,34 @@ export default function Tour() {
                 </i>
               </label>
             </div>
-              <div style={{display: 'flex'}}>
-            
-            {ImagesTour && (
-              Array.from(ImagesTour).map((image,index)=> {return(
-                <div className="preview" key={index} >
-                <span className="close" onClick={(e)=>removeImage(index)} >
-                x
-              </span>
-                <img
-                
-                  accept="image/*"
-                  className="vote-file-preview "
-                  
-                  src={URL.createObjectURL(image)}
-                  // src={image}
-                  alt=""
-                  style={{position:'absolute',width:'100%',height:'100%',borderRadius:'10px'}}
-                /> </div>)}))}
-              </div>
-              
-              
+            <div style={{ display: "flex" }}>
+              {ImagesTour &&
+                Array.from(ImagesTour).map((image, index) => {
+                  return (
+                    <div className="preview" key={index}>
+                      <span
+                        className="close"
+                        onClick={(e) => removeImage(index)}
+                      >
+                        x
+                      </span>
+                      <img
+                        accept="image/*"
+                        className="vote-file-preview "
+                        src={URL.createObjectURL(image)}
+                        // src={image}
+                        alt=""
+                        style={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "10px",
+                        }}
+                      />{" "}
+                    </div>
+                  );
+                })}
+            </div>
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Nhớ điền đầy đủ thông tin nha!

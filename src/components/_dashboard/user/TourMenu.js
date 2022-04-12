@@ -49,6 +49,7 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
+import Map from "src/pages/Map";
 // ----------------------------------------------------------------------
 const style = {
   position: "absolute",
@@ -80,7 +81,10 @@ export default function TourMenu(props) {
   const [detail, setDetail] = React.useState(props.detail);
   const [payment, setPayment] = React.useState(props.payment);
   const [time, setTime] = React.useState(props.time);
-  const [ImagesTour, setImagesTour] = React.useState();
+  const [latitude, setLatitude] = React.useState(props.latitude);
+  const [longtitude, setLongtitude] = React.useState(props.longtitude);
+
+  const [ImagesTour, setImagesTour] = React.useState([]);
   const [deleted, setDeleted] = useState(props.deleted);
 
   const [category, setCategory] = React.useState(props.category);
@@ -109,6 +113,12 @@ export default function TourMenu(props) {
     setOpenCategory(true);
   };
 
+  const handleLatitude = (data) => {
+    setLatitude(data);
+  };
+  const handleLongtitude = (data) => {
+    setLongtitude(data);
+  };
   //sửa lý edit tour
   useEffect(() => {
     (async () => {
@@ -175,10 +185,12 @@ export default function TourMenu(props) {
     addtour.append("idVehicles[]", idVehicles);
     addtour.append("name", name);
     addtour.append("place", place);
+    addtour.append("latitude", latitude);
+    addtour.append("longtitude", longtitude);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
     for(let i =0;i<ImagesTour.length;i++) {
-      addtour.append("ImagesTour",ImagesTour[i])
+      addtour.append("imagesTour",ImagesTour[i])
     }
     addtour.append("category", category);
     addtour.append("time", time);
@@ -425,6 +437,23 @@ export default function TourMenu(props) {
               value={place}
               onChange={(event) => setPlace(event.target.value)}
             />
+              <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              label="Latitude"
+              variant="outlined"
+              value={latitude}
+              // onChange={(event) => handleLatitude(event)}
+            />
+             <TextField
+              style={{ marginTop: "10px", width: "100%",marginBottom:"10px" }}
+              id="outlined-basic"
+              label="Longtitude"
+              variant="outlined"
+              value={longtitude}
+              // onChange={ (event) => handleLongtitude(event)}
+            />
+              <Map handleLat={handleLatitude} handleLng={handleLongtitude} latUpdate={latitude} lngUpdate ={longtitude} />
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               multiline
