@@ -98,7 +98,7 @@ export default function Chat() {
     <div style={{ display: "flex" }}>
       <div className="chatMenu">
         <div className="chatMenuWrapper">
-          <input placeholder="Search for friends" className="chatMenuInput" />
+          <input placeholder="Tìm kiếm khách hàng" className="chatMenuInput" />
 
           {conversations.length === 0 ? (
             <CircularProgress style={{ display: "block", marginLeft: "40%" }} />
@@ -160,7 +160,7 @@ export default function Chat() {
             </>
           ) : (
             <span className="noConversationText">
-              Open a conversation to start a chat.
+              Chọn đối tượng để bắt đầu cuộc trò chuyện.
             </span>
           )}
         </div>

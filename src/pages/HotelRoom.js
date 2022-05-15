@@ -140,7 +140,7 @@ export default function HotelRoom() {
   useEffect(() => {
     (async () => {
       const response = await fetch(
-        "https://be-travel.herokuapp.com /enterprise/getAllEnterprise",
+        "https://be-travel.herokuapp.com/enterprise/getAllEnterprise",
         {
           method: "GET",
           headers: {
@@ -156,7 +156,7 @@ export default function HotelRoom() {
   }, []);
 
   const clickAddRoom = async () => {
-    let link = "https://be-travel.herokuapp.com /hotelroom/createHotelRoom";
+    let link = "https://be-travel.herokuapp.com/hotelroom/createHotelRoom";
 
     const response = await fetch(link, {
       method: "POST",
