@@ -121,6 +121,7 @@ export default function DashboardApp() {
 
                     <DesktopDateRangePicker
                       startText="Ngày bắt đầu"
+                      endText="Ngày kết thúc"
                       value={value}
                       onChange={(newValue) => {
                         setValue(newValue);

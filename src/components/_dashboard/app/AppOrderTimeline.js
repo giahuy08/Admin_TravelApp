@@ -107,7 +107,7 @@ export default function AppOrderTimeline() {
           display: 'none'
         }
       }}
-      style={{ height: "430px", overflowY: "scroll" }}
+      style={{ height: "67%", overflowY: "scroll" }}
     >
       <CardHeader title="Các tour mới đặt" />
       <CardContent>

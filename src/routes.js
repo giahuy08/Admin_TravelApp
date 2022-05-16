@@ -19,8 +19,8 @@ import Enterprise from './pages/Enterprise';
 import HotelRoom from './pages/HotelRoom';
 import RestaurantTable from './pages/RestaurantTable';
 import Chat from './pages/Chat';
+import ScheduleTour from './pages/ScheduleTour';
 import Evaluate from './pages/Evaluate';
-
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -54,6 +54,7 @@ export default function Router() {
         { path: 'room', element: < HotelRoom/>},
         { path: 'table', element: < RestaurantTable/>},
         { path: 'chat', element: < Chat/>},
+        { path: 'scheduletour', element: < ScheduleTour/>},
 
       ]
     },

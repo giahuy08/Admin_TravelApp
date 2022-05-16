@@ -463,7 +463,7 @@ export default function Tour() {
                               variant="ghost"
                               color={(deleted == true && "error") || "success"}
                             >
-                              {(deleted == true && "Blocked") || "Online"}
+                              {(deleted == true && "Đã khóa") || "Hoạt động"}
                             </Label>
                           </TableCell>
 

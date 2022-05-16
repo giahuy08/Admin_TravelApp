@@ -342,7 +342,7 @@ export default function Enterprise() {
                               variant="ghost"
                               color={(deleted == true && "error") || "success"}
                             >
-                              {(deleted == true && "Blocked") || "Active"}
+                              {(deleted == true && "Đã khóa") || "Hoat động"}
                             </Label>
                           </TableCell>
 

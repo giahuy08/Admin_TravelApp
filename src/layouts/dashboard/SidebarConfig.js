@@ -13,6 +13,7 @@ import globe2Fill from '@iconify/icons-eva/globe-2-fill';
 import briefcaseFill from '@iconify/icons-eva/briefcase-fill';
 import carFill from '@iconify/icons-eva/car-fill';
 import homeFill from '@iconify/icons-eva/home-fill';
+import clockOutline from '@iconify/icons-eva/clock-outline';
 // ----------------------------------------------------------------------
 
 const getIcon = (name) => <Icon icon={name} width={22} height={22} />;
@@ -32,6 +33,11 @@ const sidebarConfig = [
     title: 'Tour',
     path: '/dashboard/tour',
     icon: getIcon(globe2Fill)
+  },
+  {
+    title: 'Lịch trình',
+    path: '/dashboard/scheduletour',
+    icon: getIcon(clockOutline)
   },
   {
     title: 'Các Tour đã đặt',
@@ -68,8 +74,6 @@ const sidebarConfig = [
     path: '/dashboard/chat',
     icon: getIcon(emailFill)
   },
-  
- 
 ];
 
 export default sidebarConfig;

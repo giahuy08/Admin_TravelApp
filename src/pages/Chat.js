@@ -169,7 +169,7 @@ export default function Chat() {
             </>
           ) : (
             <span className="noConversationText">
-              Open a conversation to start a chat.
+              Chọn đối tượng để bắt đầu cuộc trò chuyện.
             </span>
           )}
         </div>
