@@ -19,6 +19,7 @@ import Enterprise from './pages/Enterprise';
 import HotelRoom from './pages/HotelRoom';
 import RestaurantTable from './pages/RestaurantTable';
 import Chat from './pages/Chat';
+import Evaluate from './pages/Evaluate';
 
 // ----------------------------------------------------------------------
 
@@ -45,6 +46,7 @@ export default function Router() {
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
         { path: 'tour', element: < Tour/>},
+        { path: 'tour/:idTour', element: < Evaluate/>},
         { path: 'booktour', element: < BookTour/>},
         { path: 'discount', element: < Discount/>},
         { path: 'vehicle', element: < Vehicle/>},

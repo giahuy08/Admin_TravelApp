@@ -14,6 +14,7 @@ export default function Chat() {
   const token = localStorage.getItem("accessToken");
   const [avatar, setAvatar] = useState("");
   const [messages, setMessages] = useState([]);
+  const [skip,setSkip] = useState(0)
   console.log("re render");
   console.log(currentChat);
   const connectSocket = async (url) => {
@@ -27,7 +28,7 @@ export default function Chat() {
   };
 
   const scrollRef = useRef();
-
+  console.log(skip)
   const handleRoom = (idRoom) => {
     // socket.current.emit("JOIN_ROOM_CSS", {idUser:idRoom} );
     SocketService.socket.emit("JOIN_ROOM_CSS", { idUser: idRoom });
@@ -35,8 +36,12 @@ export default function Chat() {
   };
 
   const getMessage = (idRoom) => {
-    callApi(`chat/getMessage?idRoom=${idRoom}&skip=0&limit=15`, "GET").then(
+    callApi(`chat/getMessage?idRoom=${idRoom}`, "GET").then(
       (res) => {
+        // setSkip(prev=> prev + res.data.data.length)
+        // skip.current = res.data.data.length 
+   
+        console.log(res.data.data.length)
         setMessages(res.data.data.reverse());
       }
     );
@@ -76,10 +81,11 @@ export default function Chat() {
     console.log(newMessage);
 
     SocketService.socket.emit("SEND_MESSAGE_CSS", { message: newMessage });
-    callApi(`chat/getMessage?idRoom=${room}&skip=0&limit=15`, "GET").then(
+    callApi(`chat/getMessage?idRoom=${room}`, "GET").then(
       (res) => {
         console.log(" ds tin nhắn");
         console.log(res.data.data);
+        
         setMessages(res.data.data.reverse());
       }
     );
@@ -98,11 +104,13 @@ export default function Chat() {
     <div style={{ display: "flex" }}>
       <div className="chatMenu">
         <div className="chatMenuWrapper">
-          <input placeholder="Search for friends" className="chatMenuInput" />
+          {/* <input placeholder="Search for friends" className="chatMenuInput" /> */}
+          <div  style={{ height: "500px", overflowY: "scroll" }}>
 
           {conversations.length === 0 ? (
             <CircularProgress style={{ display: "block", marginLeft: "40%" }} />
           ) : (
+            
             conversations.map((c) => (
               <div
                 className="chat_conversation"
@@ -121,6 +129,7 @@ export default function Chat() {
               </div>
             ))
           )}
+          </div>
         </div>
       </div>
 

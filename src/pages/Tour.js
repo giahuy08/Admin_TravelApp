@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
 import callApi from "src/api/apiService";
+import { Link } from "react-router-dom";
 // material
 import {
   Card,
@@ -422,7 +423,22 @@ export default function Tour() {
                             >
                               <Avatar alt={name} src={imagesTour[0]} />
                               <Typography variant="subtitle2" noWrap>
-                                {name}
+                                <Link
+                                  to={{
+                                    pathname: `/dashboard/tour/${_id}`,
+                                    state: {
+                                     
+                                      idTour: _id,
+                                    },
+                                  }}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "#000"
+                                    
+                                  }}
+                                >
+                                  {name}
+                                </Link>
                               </Typography>
                             </Stack>
                           </TableCell>
@@ -464,8 +480,8 @@ export default function Tour() {
                               idVehicles={row.idVehicles}
                               deleted={deleted}
                               imagesTour={imagesTour}
-                              latitude = {latitude}
-                              longtitude = {longtitude}
+                              latitude={latitude}
+                              longtitude={longtitude}
                             />
                           </TableCell>
                         </TableRow>
@@ -577,8 +593,8 @@ export default function Tour() {
               value={latitude}
               // onChange={(event) => handleLatitude(event)}
             />
-             <TextField
-              style={{ marginTop: "10px", width: "100%",marginBottom:"10px" }}
+            <TextField
+              style={{ marginTop: "10px", width: "100%", marginBottom: "10px" }}
               id="outlined-basic"
               label="Longtitude"
               variant="outlined"
@@ -586,9 +602,7 @@ export default function Tour() {
               // onChange={ (event) => handleLongtitude(event)}
             />
 
-
             <Map handleLat={handleLatitude} handleLng={handleLongtitude} />
-            
 
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
