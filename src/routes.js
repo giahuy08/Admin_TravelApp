@@ -21,6 +21,7 @@ import RestaurantTable from './pages/RestaurantTable';
 import Chat from './pages/Chat';
 import ScheduleTour from './pages/ScheduleTour';
 import Evaluate from './pages/Evaluate';
+import BookTourSchedule from './pages/BookTourSchedule';
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -55,6 +56,7 @@ export default function Router() {
         { path: 'table', element: < RestaurantTable/>},
         { path: 'chat', element: < Chat/>},
         { path: 'scheduletour', element: < ScheduleTour/>},
+        {path: 'scheduletour/:id', element: < BookTourSchedule/>}
 
       ]
     },

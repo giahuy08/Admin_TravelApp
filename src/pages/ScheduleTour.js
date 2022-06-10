@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import plusFill from "@iconify/icons-eva/plus-fill";
 import { Link as RouterLink } from "react-router-dom";
 import callApi from "src/api/apiService";
+import { Link } from "react-router-dom";
 // material
 import {
   Card,
@@ -309,7 +310,19 @@ function descendingComparator(a, b, orderBy) {
                               <Stack direction="row" alignItems="center" spacing={2}>
                                 <Avatar alt={_id} src={tour.imagesTour[0]} />                            
                                 <Typography variant="subtitle2" noWrap>
-                                  {tour.name}                              
+                                <Link
+                                  to={{
+                                    pathname: `/dashboard/scheduletour/${_id}`,
+                                    state: {
+                                      id: _id,
+                                    },
+                                  }}
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "#000"
+                                  }}>
+                                  {tour.name}
+                                </Link>                              
                                 </Typography>
                               </Stack>
                             </TableCell>
@@ -380,9 +393,8 @@ function descendingComparator(a, b, orderBy) {
           BackdropComponent={Backdrop}
           BackdropProps={{
             timeout: 0,
-          }}
-        >
-          
+          }}>
+
           <Fade in={openAddScheduleTour}>
             <Box sx={style}>
               <Typography id="transition-modal-title" variant="h6" component="h2">
