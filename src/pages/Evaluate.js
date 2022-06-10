@@ -9,6 +9,7 @@ import {
   Container,
   Stack,
   Typography,
+  Paper,Box,
   Card,
   Avatar,
 } from "@mui/material";
@@ -29,7 +30,7 @@ import callApi from "src/api/apiService";
 import { useParams, useNavigate } from "react-router-dom";
 import { alpha, styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-
+import CircularProgress from '@mui/material/CircularProgress';
 // ----------------------------------------------------------------------
 import SvgIconStyle from "../components/SvgIconStyle";
 const SORT_OPTIONS = [
@@ -100,7 +101,7 @@ export default function Evaluate() {
       <Container>
         <span
           onClick={() => {
-            historyback("/dashboard/tour")
+            historyback("/dashboard/tour");
           }}
           style={{
             display: "block",
@@ -109,10 +110,9 @@ export default function Evaluate() {
             cursor: "pointer",
             width: 150,
             height: 60,
-         
           }}
         >
-          <ArrowBackIos style={{ fontSize: "20px" ,marginBottom:"-3px" }} />
+          <ArrowBackIos style={{ fontSize: "20px", marginBottom: "-3px" }} />
           Quay lại
         </span>
         <Stack
@@ -133,14 +133,21 @@ export default function Evaluate() {
               // src="/static/icons/shape-avatar.svg"
             />
 
-            {tour != null && <CoverImgStyle src={tour.imagesTour[0]} />}
+            {tour!=null && (
+              <CoverImgStyle src={tour.imagesTour[0]} />
+            )}
           </CardMediaStyle>
         </Card>
 
         <Grid container spacing={3}>
           {reviews &&
             reviews.map((review, index) => (
-              <ReviewCard key={review.id} review={review} index={index} />
+              <ReviewCard
+                key={review.id}
+                review={review}
+                index={index}
+                id={review.id}
+              />
             ))}
         </Grid>
       </Container>

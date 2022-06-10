@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 // material
-import { Paper, Typography } from '@mui/material';
+import { Paper, Typography,Box } from '@mui/material';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // ----------------------------------------------------------------------
 
@@ -11,13 +12,9 @@ SearchNotFound.propTypes = {
 export default function SearchNotFound({ searchQuery = '', ...other }) {
   return (
     <Paper {...other}>
-      <Typography gutterBottom align="center" variant="subtitle1">
-        Not found
-      </Typography>
-      <Typography variant="body2" align="center">
-        No results found for &nbsp;
-        <strong>&quot;{searchQuery}&quot;</strong>. Try checking for typos or using complete words.
-      </Typography>
+         <Box sx={{ display: 'flex',marginLeft:'60%'}} >
+            <CircularProgress />
+          </Box>
     </Paper>
   );
 }

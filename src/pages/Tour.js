@@ -425,10 +425,9 @@ export default function Tour() {
                               <Typography variant="subtitle2" noWrap>
                                 <Link
                                   to={{
-                                    pathname: `/dashboard/tour/${_id}`,
+                                    pathname: `/dashboard/review/${_id}`,
                                     state: {
-                                     
-                                      idTour: _id,
+                                    idTour: _id,
                                     },
                                   }}
                                   style={{

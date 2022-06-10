@@ -218,7 +218,6 @@ export default function TourMenu(props) {
   };
 
   const handleDeleteTour = () => {
-    console.log(localStorage.getItem("accessToken"));
 
     callApi(`tour/deleteForceTour?id=${props.id}`, "DELETE")
       .then((res) => {

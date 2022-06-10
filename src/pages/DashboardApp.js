@@ -95,7 +95,7 @@ export default function DashboardApp() {
           <Typography variant="h4">Xin chào, quản lý ứng dụng TRAVEL</Typography>
         </Box>
         {totalUser == '' && <div>
-          <Box sx={{ display: 'flex' }}>
+          <Box sx={{ display: 'flex',marginLeft:'50%',marginTop:'10%' }}>
             <CircularProgress />
           </Box>
         </div>

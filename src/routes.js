@@ -46,7 +46,7 @@ export default function Router() {
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> },
         { path: 'tour', element: < Tour/>},
-        { path: 'tour/:idTour', element: < Evaluate/>},
+        { path: 'review/:idTour', element: < Evaluate/>},
         { path: 'booktour', element: < BookTour/>},
         { path: 'discount', element: < Discount/>},
         { path: 'vehicle', element: < Vehicle/>},
