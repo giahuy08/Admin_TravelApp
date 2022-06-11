@@ -37,7 +37,7 @@ const TABLE_HEAD = [
   { id: "floor", label: "Tầng", alignRight: false },
   { id: "detail", label: "Chi tiết", alignRight: false },
   { id: "price", label: "Giá(VNĐ)", alignRight: false },
-  { id: "status", label: "Trạng thái", alignRight: false },
+  // { id: "status", label: "Trạng thái", alignRight: false },
   { id: "delete", label: "Tình trạng", alignRight: false },
   { id: "" },
 ];
@@ -312,8 +312,7 @@ export default function RestaurantTable() {
                         size,
                         floor,
                         price,
-                        status,
-                     
+                                      
                         deleted,
                       } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
@@ -356,9 +355,9 @@ export default function RestaurantTable() {
                             {price.toLocaleString("en-US")} VNĐ
                           </TableCell>
 
-                          <TableCell align="left">
+                          {/* <TableCell align="left">
                             {(status === 0 && "Còn") || "Hết"}
-                          </TableCell>
+                          </TableCell> */}
 
                           <TableCell align="left">
                             <Label
@@ -367,7 +366,7 @@ export default function RestaurantTable() {
                                 (deleted !== false && "error") || "success"
                               }
                             >
-                              {(deleted === false && "Active") || "Error"}
+                              {(deleted === false && "Hoạt động") || "Đã xóa"}
                             </Label>
                           </TableCell>
 

@@ -59,13 +59,8 @@ function OrderItem({ item, isLast }) {
         <TimelineDot
           sx={{
             bgcolor:
-              // (type === 'order1' && 'primary.main') ||
-              // (type === 1 && 'success.main') ||
-              // (type === 2 && 'info.main') ||
-              // (type === 0 && 'warning.main') ||
-              // 'error.main'
-              
-              (type === 1 && 'success.main') ||             
+          
+                 (type === 1 && 'success.main') ||             
               (type === 0 && 'warning.main') ||
               'error.main'
           }}

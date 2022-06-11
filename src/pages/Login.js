@@ -51,9 +51,9 @@ export default function Login() {
       <MHidden width="mdDown">
         <SectionStyle>
           <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-            Hi, Welcome Back
+            Chào mừng quay trở lại
           </Typography>
-          <img src="/static/illustrations/illustration_login.png" alt="login" />
+          <img src="/favicon/logo.png" width={300} height={300} alt="login" style={{marginLeft:"10%"}} />
         </SectionStyle>
       </MHidden>
 

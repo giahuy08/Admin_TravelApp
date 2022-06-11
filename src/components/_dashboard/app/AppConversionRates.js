@@ -11,7 +11,6 @@ import { BaseOptionChart } from '../../charts';
 import callApi from 'src/api/apiService';
 import { useEffect, useState } from 'react';
 
-const CHART_DATA = [{ data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380] }];
 
 export default function AppConversionRates() {
   const [data,setData] =useState([])
@@ -40,7 +39,7 @@ export default function AppConversionRates() {
       y: {
         formatter: (seriesName) => fNumber(seriesName),
         title: {
-          formatter: (seriesName) => `#${seriesName}`
+          formatter: (seriesName) => `số lượng`
         }
       }
     },

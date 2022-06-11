@@ -315,7 +315,7 @@ export default function Discount() {
                               variant="ghost"
                               color={(status == 0 && 'success') ||  'error'}
                             >
-                              {(status == 0 && 'Còn') || 'Đã Hủy'}
+                              {(status == 0 && 'Hoạt động') || 'Đã Hủy'}
                             </Label>
                           </TableCell>
 

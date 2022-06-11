@@ -337,7 +337,7 @@ function descendingComparator(a, b, orderBy) {
                                 variant="ghost"
                                 color={(slot > booked.length && 'success') ||  'error'}
                               >
-                                {(slot > booked.length && 'Còn') || 'Hết'}
+                                {(slot > booked.length && 'Còn trống') || 'Hết chỗ'}
                               </Label>
                             </TableCell>
                             <TableCell align="right">

@@ -83,6 +83,7 @@ export default function TourMenu(props) {
   const [time, setTime] = React.useState(props.time);
   const [latitude, setLatitude] = React.useState(props.latitude);
   const [longtitude, setLongtitude] = React.useState(props.longtitude);
+  const [file, setFile] = React.useState([]);
 
   const [ImagesTour, setImagesTour] = React.useState([]);
   const [deleted, setDeleted] = useState(props.deleted);
@@ -100,6 +101,11 @@ export default function TourMenu(props) {
     message: "",
     type: "",
   });
+
+  const onChangeInputFile = (e) => {
+    setFile(e.target.files[0]);
+    console.log(e.target.files);
+  };
 
   const handleChangeCategory = (event) => {
     setCategory(event.target.value);
@@ -156,28 +162,21 @@ export default function TourMenu(props) {
     })();
   }, []);
 
-  const removeImage= (index)=>{
+  const removeImage = (index) => {
     //  const s = ImagesTour.filter((item, i) => i !==index )
-    
-      const images = Array.from(ImagesTour)
-      images.splice(index,1)
-      
-      console.log(images)
-      setImagesTour(images)
 
-  
-  }
+    const images = Array.from(ImagesTour);
+    images.splice(index, 1);
+
+    console.log(images);
+    setImagesTour(images);
+  };
 
   const onChangeInput = (e) => {
-   
-    
     setImagesTour(e.target.files);
-   
   };
 
   const clickEditTour = async () => {
-  
-
     let link = "https://be-travel.herokuapp.com/tour/updateTour";
     let addtour = new FormData();
     addtour.append("id", props.id);
@@ -189,11 +188,12 @@ export default function TourMenu(props) {
     addtour.append("longtitude", longtitude);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
-    for(let i =0;i<ImagesTour.length;i++) {
-      addtour.append("imagesTour",ImagesTour[i])
+    for (let i = 0; i < ImagesTour.length; i++) {
+      addtour.append("ImagesTour", ImagesTour[i]);
     }
     addtour.append("category", category);
     addtour.append("time", time);
+    addtour.append("FilesTour", file);
     const response = await fetch(link, {
       method: "PUT",
       headers: {
@@ -218,7 +218,6 @@ export default function TourMenu(props) {
   };
 
   const handleDeleteTour = () => {
-
     callApi(`tour/deleteForceTour?id=${props.id}`, "DELETE")
       .then((res) => {
         setNotify({
@@ -436,7 +435,7 @@ export default function TourMenu(props) {
               value={place}
               onChange={(event) => setPlace(event.target.value)}
             />
-              <TextField
+            <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
               label="Latitude"
@@ -444,15 +443,20 @@ export default function TourMenu(props) {
               value={latitude}
               // onChange={(event) => handleLatitude(event)}
             />
-             <TextField
-              style={{ marginTop: "10px", width: "100%",marginBottom:"10px" }}
+            <TextField
+              style={{ marginTop: "10px", width: "100%", marginBottom: "10px" }}
               id="outlined-basic"
               label="Longtitude"
               variant="outlined"
               value={longtitude}
               // onChange={ (event) => handleLongtitude(event)}
             />
-              <Map handleLat={handleLatitude} handleLng={handleLongtitude} latUpdate={latitude} lngUpdate ={longtitude} />
+            <Map
+              handleLat={handleLatitude}
+              handleLng={handleLongtitude}
+              latUpdate={latitude}
+              lngUpdate={longtitude}
+            />
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               multiline
@@ -502,8 +506,8 @@ export default function TourMenu(props) {
               value={time}
               onChange={(event) => setTime(event.target.value)}
             />
-              <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-             Hình ảnh
+            <Typography id="transition-modal-description" sx={{ mt: 2 }}>
+              Hình ảnh
             </Typography>
             <div style={{ display: "flex" }}>
               {images &&
@@ -545,26 +549,49 @@ export default function TourMenu(props) {
               </label>
             </div>
 
-            <div style={{display: 'flex'}}>
-            
-            {ImagesTour && (
-              Array.from(ImagesTour).map((image,index)=> {return(
-                <div className="preview" key={index} >
-                <span className="close" onClick={(e)=>removeImage(index)} >
-                x
-              </span>
-                <img
-                
-                  accept="image/*"
-                  className="vote-file-preview "
-                  
-                  src={URL.createObjectURL(image)}
-                  // src={image}
-                  alt=""
-                  style={{position:'absolute',width:'100%',height:'100%',borderRadius:'10px'}}
-                /> </div>)}))}
-              </div>
-
+            <div style={{ display: "flex" }}>
+              {ImagesTour &&
+                Array.from(ImagesTour).map((image, index) => {
+                  return (
+                    <div className="preview" key={index}>
+                      <span
+                        className="close"
+                        onClick={(e) => removeImage(index)}
+                      >
+                        x
+                      </span>
+                      <img
+                        accept="image/*"
+                        className="vote-file-preview "
+                        src={URL.createObjectURL(image)}
+                        // src={image}
+                        alt=""
+                        style={{
+                          position: "absolute",
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "10px",
+                        }}
+                      />{" "}
+                    </div>
+                  );
+                })}
+            </div>
+            <div class="input-file">
+              <input
+                type="file"
+                name="file"
+                id="filePdf"
+                onChange={onChangeInputFile}
+              />
+              <label for="filePdf" class="input-label">
+                {file.length == 0 ? (
+                  <p>Chọn File PDF</p>
+                ) : (
+                  <p style={{ color: "#00ab55" }}>{file.name}</p>
+                )}
+              </label>
+            </div>
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Nhớ kiểm tra trước khi lưu nha!
             </Typography>

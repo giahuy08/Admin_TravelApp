@@ -58,6 +58,8 @@ const TABLE_HEAD = [
   { id: "star", label: "Đánh giá", alignRight: false },
   { id: "place", label: "Địa điểm", alignRight: false },
   { id: "deleted", label: "Tình trạng", alignRight: false },
+  { id: "itinerary", label: "Lịch trình", alignRight: false },
+
   { id: "" },
 ];
 
@@ -129,6 +131,7 @@ export default function Tour() {
   const [idVehicles, setidVehicles] = React.useState([]);
 
   const [name, setName] = React.useState("");
+  const [itinerary, setItinerary] = React.useState("");
   const [place, setPlace] = React.useState("");
   const [latitude, setLatitude] = React.useState("");
   const [longtitude, setLongtitude] = React.useState("");
@@ -136,7 +139,7 @@ export default function Tour() {
   const [payment, setPayment] = React.useState("");
   const [time, setTime] = React.useState("");
   const [ImagesTour, setImagesTour] = React.useState([]);
-
+  const [file, setFile] = React.useState([]);
   const [category, setCategory] = React.useState(0);
   const [openCategory, setOpenCategory] = React.useState(false);
 
@@ -213,6 +216,7 @@ export default function Tour() {
       ImagesTour,
       category,
       time,
+      file,
     });
 
     let link = "https://be-travel.herokuapp.com/tour/createTour";
@@ -227,12 +231,14 @@ export default function Tour() {
     addtour.append("payment", payment);
 
     for (let i = 0; i < ImagesTour.length; i++) {
-      addtour.append("imagesTour", ImagesTour[i]);
+      addtour.append("ImagesTour", ImagesTour[i]);
     }
 
     // addtour.append("ImagesTour", ImagesTour);
     addtour.append("category", category);
     addtour.append("time", time);
+    addtour.append("FilesTour", file);
+
     const response = await fetch(link, {
       method: "POST",
       headers: {
@@ -254,7 +260,11 @@ export default function Tour() {
 
   //
   const [tours, setTours] = useState([]);
+  const onChangeInputFile = (e) => {
+    setFile(e.target.files[0]);
+    console.log(e.target.files);
 
+  };
   useEffect(() => {
     callApi(`tour/getAllTourWithDeleted?search&skip&limit`, "GET").then(
       (res) => {
@@ -324,6 +334,8 @@ export default function Tour() {
     setImagesTour(e.target.files);
   };
 
+ 
+
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - tours.length) : 0;
 
@@ -392,6 +404,7 @@ export default function Tour() {
                         star,
                         imagesTour,
                         deleted,
+                        itinerary,
                       } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -427,13 +440,12 @@ export default function Tour() {
                                   to={{
                                     pathname: `/dashboard/review/${_id}`,
                                     state: {
-                                    idTour: _id,
+                                      idTour: _id,
                                     },
                                   }}
                                   style={{
                                     textDecoration: "none",
-                                    color: "#000"
-                                    
+                                    color: "#000",
                                   }}
                                 >
                                   {name}
@@ -447,14 +459,7 @@ export default function Tour() {
                           </TableCell>
                           <TableCell align="left">{time}</TableCell>
                           <TableCell align="left">{star.toFixed(2)}</TableCell>
-                          {/* <TableCell align="left">
-                            <Label
-                              variant="ghost"
-                              color={'success'}
-                            >
-                              {place}
-                            </Label>
-                          </TableCell> */}
+
                           <TableCell align="left">{place}</TableCell>
 
                           <TableCell align="left">
@@ -464,6 +469,23 @@ export default function Tour() {
                             >
                               {(deleted == true && "Đã khóa") || "Hoạt động"}
                             </Label>
+                          </TableCell>
+                          <TableCell align="left">
+                          
+                            {itinerary == "" || itinerary==null? (
+                               <p>Trống</p>
+                            ) : (
+                            
+                              <a
+                              style={{
+                                color: "#46ac3b",
+                                textDecoration: "none",
+                              }}
+                              href={itinerary}
+                            >
+                              File PDF
+                            </a>
+                            )}
                           </TableCell>
 
                           <TableCell align="right">
@@ -667,6 +689,7 @@ export default function Tour() {
                 </i>
               </label>
             </div>
+
             <div style={{ display: "flex" }}>
               {ImagesTour &&
                 Array.from(ImagesTour).map((image, index) => {
@@ -694,6 +717,22 @@ export default function Tour() {
                     </div>
                   );
                 })}
+            </div>
+
+            <div class="input-file">
+              <input
+                type="file"
+                name="file"
+                id="filePdf"
+                onChange={onChangeInputFile}
+              />
+              <label for="filePdf" class="input-label">
+                {file.length == 0 ? (
+                  <p>Chọn File PDF</p>
+                ) : (
+                  <p style={{ color: "#00ab55" }}>{file.name}</p>
+                )}
+              </label>
             </div>
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>

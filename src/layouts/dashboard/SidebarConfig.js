@@ -39,11 +39,11 @@ const sidebarConfig = [
     path: '/dashboard/scheduletour',
     icon: getIcon(clockOutline)
   },
-  {
-    title: 'Các Tour đã đặt',
-    path: '/dashboard/booktour',
-    icon: getIcon(shoppingBagFill)
-  },
+  // {
+  //   title: 'Các Tour đã đặt',
+  //   path: '/dashboard/booktour',
+  //   icon: getIcon(shoppingBagFill)
+  // },
   {
     title: 'Mã giảm giá',
     path: '/dashboard/discount',

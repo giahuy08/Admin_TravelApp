@@ -55,7 +55,7 @@ const TABLE_HEAD = [
   { id: "name", label: "Tên", alignRight: false },
   { id: "type", label: "Loại", alignRight: false },
   { id: "vehicleNumber", label: "Biển số xe", alignRight: false },
-  { id: "status", label: "Hoạt động", alignRight: false },
+  // { id: "status", label: "Hoạt động", alignRight: false },
   { id: "deleted", label: "Trạng thái", alignRight: false },
   // { id: 'star', label: 'Star', alignRight: false },
   // { id: 'place', label: 'Place', alignRight: false },
@@ -348,7 +348,7 @@ export default function Vehicle() {
                         vehicleNumber,
                         imagesVehicle,
                         deleted,
-                        status
+                        // status
                        
                       } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
@@ -393,14 +393,14 @@ export default function Vehicle() {
                           {(type===3 && "Máy bay")}
                            </TableCell>
                           <TableCell align="left">{vehicleNumber}</TableCell>
-                          <TableCell align="left">{(status === 0 && "Còn") || "Hết"}</TableCell>
+                          {/* <TableCell align="left">{(status === 0 && "Còn") || "Hết"}</TableCell> */}
                        
                           <TableCell align="left">
                             <Label
                               variant="ghost"
                               color={(deleted !== false && "error") || "success"}
                             >
-                              {(deleted === false && "Active") || "Error"}
+                              {(deleted === false && "Hoạt động") || "Đã xóa"}
                             </Label>
                           </TableCell>
 

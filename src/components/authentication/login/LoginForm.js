@@ -138,7 +138,7 @@ export default function LoginForm() {
           variant="contained"
           loading={isSubmitting}
         >
-          Login
+          Đăng nhập
         </LoadingButton>
       </Form>
       <Message notify={notify} setNotify={setNotify} />

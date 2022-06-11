@@ -52,7 +52,7 @@ const TABLE_HEAD = [
   { id: "name", label: "Tên", alignRight: false },
   { id: "detail", label: "Chi tiết", alignRight: false },
   { id: "type", label: "Loại", alignRight: false },
-  { id: "status", label: "Status", alignRight: false },
+  // { id: "status", label: "Status", alignRight: false },
   { id: "delete", label: "Trạng thái", alignRight: false },
   { id: "" },
 ];
@@ -289,7 +289,7 @@ export default function Enterprise() {
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                     .map((row) => {
-                      const { _id, name, logo, detail, status, type, deleted } =
+                      const { _id, name, logo, detail, type, deleted } =
                         row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -333,9 +333,9 @@ export default function Enterprise() {
                             {type === 2 && "Nhà hàng"}
                           </TableCell>
 
-                          <TableCell align="left">
+                          {/* <TableCell align="left">
                             {(status === 0 && "Còn") || "Hết"}
-                          </TableCell>
+                          </TableCell> */}
 
                           <TableCell align="left">
                             <Label
