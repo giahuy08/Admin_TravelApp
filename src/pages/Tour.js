@@ -57,6 +57,7 @@ const TABLE_HEAD = [
   { id: "time", label: "Thời gian", alignRight: false },
   { id: "star", label: "Đánh giá", alignRight: false },
   { id: "place", label: "Địa điểm", alignRight: false },
+  { id: "startingplace", label: "Điểm xuất phát", alignRight: false },
   { id: "deleted", label: "Tình trạng", alignRight: false },
   { id: "itinerary", label: "Lịch trình", alignRight: false },
 
@@ -139,6 +140,7 @@ export default function Tour() {
   const [payment, setPayment] = React.useState("");
   const [time, setTime] = React.useState("");
   const [ImagesTour, setImagesTour] = React.useState([]);
+  const [startingplace, setStartingPlace] = React.useState("");
   const [file, setFile] = React.useState([]);
   const [category, setCategory] = React.useState(0);
   const [openCategory, setOpenCategory] = React.useState(false);
@@ -229,7 +231,7 @@ export default function Tour() {
     addtour.append("longtitude", longtitude);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
-
+    addtour.append("startingplace", startingplace);
     for (let i = 0; i < ImagesTour.length; i++) {
       addtour.append("ImagesTour", ImagesTour[i]);
     }
@@ -263,7 +265,6 @@ export default function Tour() {
   const onChangeInputFile = (e) => {
     setFile(e.target.files[0]);
     console.log(e.target.files);
-
   };
   useEffect(() => {
     callApi(`tour/getAllTourWithDeleted?search&skip&limit`, "GET").then(
@@ -334,8 +335,6 @@ export default function Tour() {
     setImagesTour(e.target.files);
   };
 
- 
-
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - tours.length) : 0;
 
@@ -402,6 +401,7 @@ export default function Tour() {
                         latitude,
                         longtitude,
                         star,
+                        startingplace,
                         imagesTour,
                         deleted,
                         itinerary,
@@ -461,6 +461,7 @@ export default function Tour() {
                           <TableCell align="left">{star.toFixed(2)}</TableCell>
 
                           <TableCell align="left">{place}</TableCell>
+                          <TableCell align="left">{startingplace}</TableCell>
 
                           <TableCell align="left">
                             <Label
@@ -471,20 +472,18 @@ export default function Tour() {
                             </Label>
                           </TableCell>
                           <TableCell align="left">
-                          
-                            {itinerary == "" || itinerary==null? (
-                               <p>Trống</p>
+                            {itinerary == "" || itinerary == null ? (
+                              <p>Trống</p>
                             ) : (
-                            
                               <a
-                              style={{
-                                color: "#46ac3b",
-                                textDecoration: "none",
-                              }}
-                              href={itinerary}
-                            >
-                              File PDF
-                            </a>
+                                style={{
+                                  color: "#46ac3b",
+                                  textDecoration: "none",
+                                }}
+                                href={itinerary}
+                              >
+                                File PDF
+                              </a>
                             )}
                           </TableCell>
 
@@ -501,6 +500,7 @@ export default function Tour() {
                               idVehicles={row.idVehicles}
                               deleted={deleted}
                               imagesTour={imagesTour}
+                              startingplace={startingplace}
                               latitude={latitude}
                               longtitude={longtitude}
                             />
@@ -604,6 +604,15 @@ export default function Tour() {
               variant="outlined"
               value={place}
               onChange={(event) => setPlace(event.target.value)}
+            />
+
+            <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              label="Điểm xuất phát"
+              variant="outlined"
+              value={startingplace}
+              onChange={(event) => setStartingPlace(event.target.value)}
             />
 
             <TextField

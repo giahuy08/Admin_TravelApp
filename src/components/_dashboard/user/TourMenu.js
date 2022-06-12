@@ -83,6 +83,7 @@ export default function TourMenu(props) {
   const [time, setTime] = React.useState(props.time);
   const [latitude, setLatitude] = React.useState(props.latitude);
   const [longtitude, setLongtitude] = React.useState(props.longtitude);
+  const [startingplace,setStartingPlace] = React.useState(props.startingplace);
   const [file, setFile] = React.useState([]);
 
   const [ImagesTour, setImagesTour] = React.useState([]);
@@ -188,6 +189,7 @@ export default function TourMenu(props) {
     addtour.append("longtitude", longtitude);
     addtour.append("detail", detail);
     addtour.append("payment", payment);
+    addtour.append("startingplace",startingplace)
     for (let i = 0; i < ImagesTour.length; i++) {
       addtour.append("ImagesTour", ImagesTour[i]);
     }
@@ -435,6 +437,15 @@ export default function TourMenu(props) {
               value={place}
               onChange={(event) => setPlace(event.target.value)}
             />
+
+              <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              label="Điểm xuất phát"
+              variant="outlined"
+              value={startingplace}
+              onChange={(event) => setStartingPlace(event.target.value)}
+            />  
             <TextField
               style={{ marginTop: "10px", width: "100%" }}
               id="outlined-basic"
