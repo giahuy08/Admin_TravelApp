@@ -14,17 +14,24 @@ export default function Chat() {
   const token = localStorage.getItem("accessToken");
   const [avatar, setAvatar] = useState("");
   const [messages, setMessages] = useState([]);
-  const [skip,setSkip] = useState(0)
+  const [skip,setSkip] = useState(0);
+  const textRef = useRef("")
+
+  const textToRef = (text) =>{
+    textRef.current = textRef.current + text
+  }
+
   console.log("re render");
   console.log(currentChat);
+ 
   const connectSocket = async (url) => {
     const socket = await SocketService.connect(url).catch((err) => {
       console.log("Error: ", err);
     });
   };
 
-  const handleNewMessage = (message) => {
-    setNewMessage(message);
+  const handleNewMessage = (e) => {
+    setNewMessage(e.target.value);
   };
 
   const scrollRef = useRef();
@@ -32,17 +39,16 @@ export default function Chat() {
   const handleRoom = (idRoom) => {
     // socket.current.emit("JOIN_ROOM_CSS", {idUser:idRoom} );
     SocketService.socket.emit("JOIN_ROOM_CSS", { idUser: idRoom });
-    getMessage(idRoom);
+       getMessage(idRoom);
+    
   };
 
   const getMessage = (idRoom) => {
     callApi(`chat/getMessage?idRoom=${idRoom}`, "GET").then(
       (res) => {
-        // setSkip(prev=> prev + res.data.data.length)
-        // skip.current = res.data.data.length 
-   
-        console.log(res.data.data.length)
+    
         setMessages(res.data.data.reverse());
+
       }
     );
   };
@@ -51,6 +57,7 @@ export default function Chat() {
     if (token) {
       // console.log(`123`, token);
       const urlSocket = `https://be-travel.herokuapp.com?token=Bearer ${token}`;
+
       connectSocket(urlSocket);
     }
 
@@ -71,25 +78,27 @@ export default function Chat() {
   const onMessage = () => {
     if (SocketService.socket) {
       SocketService.socket.on("SEND_MESSAGE_SSC", (data) => {
-        setMessages((prev) => [...prev, data]);
+        setMessages((prev) => [...prev,data]);
       });
     }
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     console.log("tin nhắn mới");
-    console.log(newMessage);
+    console.log(textRef.current.value);
 
-    SocketService.socket.emit("SEND_MESSAGE_CSS", { message: newMessage });
+    SocketService.socket.emit("SEND_MESSAGE_CSS", { message:textRef.current.value });
+    
     callApi(`chat/getMessage?idRoom=${room}`, "GET").then(
       (res) => {
         console.log(" ds tin nhắn");
         console.log(res.data.data);
         
-        setMessages(res.data.data.reverse());
+        // setMessages(res.data.data.reverse());
       }
     );
-    setNewMessage("");
+    // onMessage()
+    textRef.current.value="";
   };
 
   useEffect(() => {
@@ -154,18 +163,15 @@ export default function Chat() {
                   <input
                     type="text"
                     className="chat__input"
-                    onChange={(e) => handleNewMessage(e.target.value)}
-                    value={newMessage}
+                    ref = {textRef}
+                    // onChange = {e=>textToRef(e.target.value)}
                   />
                 </div>
-                {/* <button
-                  className="chatSubmitButton"
-
-                  //   onClick={handleSubmit}
-                > */}
+            
                 <SendIcon onClick={handleSubmit} />
-                {/* </button> */}
+    
               </div>
+             
             </>
           ) : (
             <span className="noConversationText">
