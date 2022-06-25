@@ -75,6 +75,8 @@ export default function ScheduleTourMenu(props) {
   const [MFG, setMFG] = useState(props.MFG);
   const [EXP, setEXP] = useState(props.EXP);
   const [status, setStatus] = useState(props.status);
+  const [scheduletour, setScheduleTour] = useState();
+  const [scheduletourEmail, setScheduleTourEmail] = useState([]);
   const handleClickDialogClose = () => {
     setOpenDialog(false);
   };
@@ -107,6 +109,21 @@ export default function ScheduleTourMenu(props) {
         });
       });
   };
+
+  useEffect(() => {
+    callApi(`scheduletour/getOneScheduleTour?id=${id}`, "GET").then(
+      (res) => {
+   
+          setScheduleTour(res.data.data);
+          setScheduleTourEmail(res.data.data.listEmail)
+      
+      },
+     
+    )
+    .catch(err=>{
+      console.log(err)
+    })
+  },[]);
 
   const handleDeleteScheduleTour = () => {
     console.log(localStorage.getItem("accessToken"));
@@ -161,7 +178,7 @@ export default function ScheduleTourMenu(props) {
         {(status == 0 && (
           <MenuItem sx={{ color: "text.secondary" }}>
             <ListItemIcon>
-            <Icon icon={trash2Outline} width={24} height={24} />
+              <Icon icon={trash2Outline} width={24} height={24} />
             </ListItemIcon>
             <ListItemText
               primary="Xóa"
@@ -185,10 +202,16 @@ export default function ScheduleTourMenu(props) {
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
-            style={{ textAlign: "center" }}
+            style={{ textAlign: "center",marginBottom:"10px" }}
           >
-            Bạn có muốn xóa?
+            Bạn có muốn xóa lịch trình? <br></br> 
+            Hệ thống sẽ gửi đến những email này để hoàn tiền
           </DialogContentText>
+          
+          { scheduletourEmail?
+            scheduletourEmail.map(mail=><p>{mail}</p>):<p></p>
+          }
+         
         </DialogContent>
         <DialogActions>
           <Button
@@ -232,14 +255,28 @@ export default function ScheduleTourMenu(props) {
             />
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Ngày đăng ký:
-              </Typography>     
-            <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="date"  variant="outlined" value={MFG} onChange={(event)=>setMFG(event.target.value)}/>
+              Ngày đăng ký:
+            </Typography>
+            <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              type="date"
+              variant="outlined"
+              value={MFG}
+              onChange={(event) => setMFG(event.target.value)}
+            />
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
-            Ngày kết thúc:
-              </Typography>     
-            <TextField style={{marginTop: '10px', width: '100%'}} id="outlined-basic" type="date"  variant="outlined" value={EXP} onChange={(event)=>setEXP(event.target.value)}/>
+              Ngày kết thúc:
+            </Typography>
+            <TextField
+              style={{ marginTop: "10px", width: "100%" }}
+              id="outlined-basic"
+              type="date"
+              variant="outlined"
+              value={EXP}
+              onChange={(event) => setEXP(event.target.value)}
+            />
 
             <Typography id="transition-modal-description" sx={{ mt: 2 }}>
               Kiểm tra trước khi nhấn "Lưu"!
