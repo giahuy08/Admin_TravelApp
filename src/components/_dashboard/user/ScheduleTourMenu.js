@@ -111,19 +111,17 @@ export default function ScheduleTourMenu(props) {
   };
 
   useEffect(() => {
-    callApi(`scheduletour/getOneScheduleTour?id=${id}`, "GET").then(
-      (res) => {
-   
+    callApi(`scheduletour/getOneScheduleTour?id=${id}`, "GET")
+      .then((res) => {
+        if (res.status == 200) {
           setScheduleTour(res.data.data);
-          setScheduleTourEmail(res.data.data.listEmail)
-      
-      },
-     
-    )
-    .catch(err=>{
-      console.log(err)
-    })
-  },[]);
+          setScheduleTourEmail(res.data.data.listEmail);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const handleDeleteScheduleTour = () => {
     console.log(localStorage.getItem("accessToken"));
@@ -202,16 +200,23 @@ export default function ScheduleTourMenu(props) {
         <DialogContent>
           <DialogContentText
             id="alert-dialog-description"
-            style={{ textAlign: "center",marginBottom:"10px" }}
+            style={{ textAlign: "center" }}
           >
-            Bạn có muốn xóa lịch trình? <br></br> 
-            Hệ thống sẽ gửi đến những email này để hoàn tiền
+            Bạn có muốn xóa lịch trình? <br></br>
           </DialogContentText>
-          
-          { scheduletourEmail?
-            scheduletourEmail.map(mail=><p>{mail}</p>):<p></p>
-          }
-         
+          {scheduletourEmail.length>0 && (
+            <DialogContentText
+              id="alert-dialog-description"
+              style={{ textAlign: "center", marginBottom: "10px" }}
+            >
+              Hệ thống sẽ gửi đến những email này để hoàn tiền
+            </DialogContentText>
+          )}
+          {scheduletourEmail ? (
+            scheduletourEmail.map((mail) => <p>{mail}</p>)
+          ) : (
+            <p></p>
+          )}
         </DialogContent>
         <DialogActions>
           <Button
